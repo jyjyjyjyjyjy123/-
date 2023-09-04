@@ -29,43 +29,31 @@ SELECT
 FROM TBLMEN;
 	
 -- tblAddressBook. 가장 많은 사람들이 가지고 있는 직업은 주로 어느 지역 태생(hometown)인가?
-
-(SELECT
-	job, 
-	hometown,
-	count(*)
-FROM TBLADDRESSBOOK
-	GROUP BY JOB, hometown
-		HAVING (JOB IN (SELECT JOB FROM TBLADDRESSBOOK GROUP BY JOB HAVING COUNT(JOB) = (SELECT MAX(COUNT(JOB)) FROM TBLADDRESSBOOK GROUP BY JOB)))AND
-				count(*) = (SELECT max(count(*))FROM tbladdressbook GROUP BY job, hometown HAVING JOB IN (SELECT JOB FROM TBLADDRESSBOOK GROUP BY JOB HAVING COUNT(JOB) = (SELECT MAX(COUNT(JOB)) FROM TBLADDRESSBOOK GROUP BY JOB))));
-
--- tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
 SELECT
-	substr(email, instr(email,'@')+1),
-	avg(length(substr(email, 1 , instr(email,'@')-1)))
-FROM tbladdressbook
-	GROUP BY substr(email, instr(email,'@')+1)
-		HAVING avg(length(substr(email, 1 , instr(email,'@')-1))) = (SELECT max(avg(length(substr(email, 1 , instr(email,'@')-1)))) FROM tbladdressbook GROUP BY substr(email, instr(email,'@')+1));
+	HOMETOWN,
+	COUNT(*)
+FROM TBLADDRESSBOOK
+	WHERE JOB IN (SELECT JOB FROM TBLADDRESSBOOK GROUP BY JOB HAVING COUNT(JOB) = (SELECT MAX(COUNT(JOB)) FROM TBLADDRESSBOOK GROUP BY JOB))
+	GROUP BY HOMETOWN;
+-- tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
+
+
             
             
 
 -- tblAddressBook. 평균 나이가 가장 많은 출신(hometown)들이 가지고 있는 직업 중 가장 많은 직업은?
-SELECT JOB, count(*)
-FROM (SELECT job FROM tbladdressbook 
-								WHERE hometown IN (SELECT hometown FROM tbladdressbook GROUP BY hometown
-													HAVING AVG(age) = (SELECT MAX(AVG(age)) FROM tbladdressbook GROUP BY hometown)))
-GROUP BY job
-	HAVING count(*) = (SELECT MAX(count(*))
-						FROM (SELECT job FROM tbladdressbook 
-								WHERE hometown IN (SELECT hometown FROM tbladdressbook GROUP BY hometown
-													HAVING AVG(age) = (SELECT MAX(AVG(age)) FROM tbladdressbook GROUP BY hometown)))
-						GROUP BY job);
+
+
+
+
+
 
 -- tblAddressBook. 남자 평균 나이보다 나이가 많은 서울 태생 + 직업을 가지고 있는 사람들을 가져오시오.
-SELECT * FROM tbladdressbook 
-	WHERE age > (SELECT avg(age) FROM tbladdressbook WHERE gender = 'm')
-					
-;
+
+
+
+
+
 
 -- tblAddressBook. 가장 나이가 많으면서 가장 몸무게가 많이 나가는 사람과 같은 직업을 가지는 사람들을 가져오시오.
 
