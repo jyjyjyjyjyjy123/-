@@ -30,18 +30,31 @@ FROM TBLMEN;
 	
 -- tblAddressBook. 가장 많은 사람들이 가지고 있는 직업은 주로 어느 지역 태생(hometown)인가?
 SELECT
+	job,
 	HOMETOWN,
 	COUNT(*)
 FROM TBLADDRESSBOOK
 	WHERE JOB IN (SELECT JOB FROM TBLADDRESSBOOK GROUP BY JOB HAVING COUNT(JOB) = (SELECT MAX(COUNT(JOB)) FROM TBLADDRESSBOOK GROUP BY JOB))
-	GROUP BY HOMETOWN;
--- tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
-
-
+	GROUP BY job, HOMETOWN
+		HAVING count(*) = (SELECT max(count(*)) FROM tbladdressbook GROUP BY job, hometown);
+ -- tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
+SELECT
+	*
+FROM (SELECT substr(email,instr(email,'@')+1) AS 도메인, avg(LENGTH(substr(email,1,instr(email,'@')-1))) AS 평균길이 FROM tbladdressbook GROUP BY substr(email,instr(email,'@')+1))
+	WHERE 평균길이 = (SELECT max(avg(LENGTH(substr(email,1,instr(email,'@')-1)))) FROM tbladdressbook GROUP BY substr(email,instr(email,'@')+1));
             
             
 
 -- tblAddressBook. 평균 나이가 가장 많은 출신(hometown)들이 가지고 있는 직업 중 가장 많은 직업은?
+SELECT
+	job,
+	count(*)
+FROM tbladdressbook
+	WHERE hometown = 
+	(SELECT CASE
+				WHEN 평균나이 = max(평균나이) THEN 출신
+			END FROM(SELECT hometown AS 출신, avg(age) AS 평균나이 FROM tbladdressbook GROUP BY hometown))  
+	GROUP BY job;
 
 
 
