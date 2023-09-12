@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="자원 &apos;newProject/projecttttttt.exerd&apos;을(를) &apos;prorororoor&apos;(으)로 이름 바꾸기" description="&apos;projecttttttt.exerd&apos; 자원 이름 바꾸기" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="projecttttttt.exerd" name="prorororoor" stamp="1694484951103" updateReferences="true"/>&#x0A;<refactoring comment="자원 &apos;newProject/prorororoor&apos;을(를) &apos;prorororoor.exerd&apos;(으)로 이름 바꾸기" description="&apos;prorororoor&apos; 자원 이름 바꾸기" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="prorororoor" name="prorororoor.exerd" stamp="1694484959501" updateReferences="true"/>
+</session>
