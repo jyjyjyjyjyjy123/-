@@ -1,0 +1,284 @@
+--본인의 과정 정보
+SELECT 
+	cn2.coursename AS "과정명",
+	s.studentname AS "교육생 이름",
+	round(((alls.ats + alls.ws + alls.ps)/3), 2) AS "평균 점수",
+	sq.te AS "강사명",
+	to_char(c2.coursestartdate, 'yyyy-mm-dd') || ' ~ ' || to_char(c2.courseenddate, 'yyyy-mm-dd') AS "과정 기간",
+	cs3.coursestatus AS "과정 상태"
+FROM tblstudent s
+	INNER JOIN tblcoursereg cr
+		ON s.student_seq = cr.student_seq
+	INNER JOIN tblcompletestate cs
+		ON cr.completestate_seq = cs.completestate_seq
+	INNER JOIN tblcourse c2
+		ON c2.course_seq = cr.course_seq
+	INNER JOIN tblcoursestatus cs3
+		ON c2.coursestatus_seq = cs3.coursestatus_seq
+	INNER JOIN tblcoursename cn2
+		ON cn2.coursename_seq = c2.coursename_seq
+	INNER JOIN (SELECT 
+					cs2.course_seq AS co,
+					t2.teachername AS te
+				FROM tblcoursesubject cs2
+					INNER JOIN tblsubjectavailability sa2
+						ON cs2.subjectavailability_seq = sa2.subjectavailability_seq
+					INNER JOIN tblteacher t2
+						ON sa2.teacher_seq = t2.teacher_seq
+					GROUP BY cs2.course_seq, t2.teachername
+					ORDER BY cs2.course_seq) sq
+		ON sq.co = c2.course_seq
+	INNER JOIN (SELECT alls.student_seq, avg(attendscore) AS ats, avg(wscore) AS ws, avg(pscore) AS ps FROM tblallscore alls INNER JOIN tblstudent s ON s.student_seq = alls.student_seq GROUP BY alls.student_seq) alls
+		ON alls.student_seq = s.student_seq
+	WHERE s.student_seq = 204
+	ORDER BY s.student_seq;
+
+--자격증 검색
+SELECT 
+	cn2.coursename AS "과정명",
+	s.studentname AS "교육생 이름",
+	cn.certifyname AS "자격증명"	
+FROM tblstudent s
+	INNER JOIN tblcertify c
+		ON s.student_seq = c.student_seq
+	INNER JOIN tblcertifyname cn
+		ON c.ceritifyname_seq = cn.certifyname_seq
+	INNER JOIN tblcoursereg cr
+		ON s.student_seq = cr.student_seq
+	INNER JOIN tblcourse c2
+		ON c2.course_seq = cr.course_seq
+	INNER JOIN tblcoursename cn2
+		ON cn2.coursename_seq = c2.coursename_seq
+	WHERE s.student_seq = 204
+	ORDER BY s.student_seq;
+
+--경력사항
+SELECT 
+	cn2.coursename AS "과정명",
+	s.studentname AS "교육생 이름",
+	we.workspace AS "회사명",
+	to_char(we.workstartdate, 'yyyy-mm-dd') || ' ~ ' || to_char(we.worrenddate, 'yyyy-mm-dd') AS "근무 기간",
+	we.worktask AS "직위" 
+FROM tblstudent s 
+	INNER JOIN tblWorkExperienceRel wer
+		ON wer.student_seq = s.student_seq
+	INNER JOIN tblWorkExperience we
+		ON we.workexperience_seq = wer.workexperience_seq
+	INNER JOIN tblcoursereg cr
+		ON s.student_seq = cr.student_seq
+	INNER JOIN tblcourse c2
+		ON c2.course_seq = cr.course_seq
+	INNER JOIN tblcoursename cn2
+		ON cn2.coursename_seq = c2.coursename_seq
+	WHERE s.student_seq = 204
+	ORDER BY s.student_seq;
+
+-- 희망 근무 조건
+SELECT 
+	cn2.coursename AS "과정명",
+	s.studentname AS "교육생 이름",
+	hd.hopedutyfield AS "취업 희망분야",
+	ha.hopearea AS "희망지역",
+	hd.hopesalary AS "희망급여"
+FROM tblstudent s
+	INNER JOIN tblcoursereg cr
+		ON s.student_seq = cr.student_seq
+	INNER JOIN tblcourse c2
+		ON c2.course_seq = cr.course_seq
+	INNER JOIN tblcoursename cn2
+		ON cn2.coursename_seq = c2.coursename_seq
+	INNER JOIN tblHopeDuty hd
+		ON hd.student_seq = s.student_seq
+	INNER JOIN tblHopeAreaRel har
+		ON har.hopeduty_seq = hd.hopeduty_seq
+	INNER JOIN tblhopearea ha
+		ON ha.hopearea_seq = har.hopearea_seq
+	WHERE s.student_seq = 204
+	ORDER BY s.student_seq;
+
+-- 취업 현황
+SELECT  * FROM tblemployment ORDER BY student_seq;
+SELECT 
+	cn2.coursename AS "과정명",
+	s.studentname AS "교육생 이름",
+	e.companyname AS "기업명",
+	e.insurance AS "고용보험",
+	to_char(e.hiredate, 'yyyy-mm-dd') AS "취업일",
+	cs.completestate AS "수료상태",
+	to_char(cr.completedate, 'yyyy-mm-dd') AS "수료일"
+FROM tblstudent s
+	INNER JOIN tblcoursereg cr
+		ON s.student_seq = cr.student_seq
+	INNER JOIN tblcompletestate cs
+		ON cs.completestate_seq = cr.completestate_seq	
+	INNER JOIN tblcourse c2
+		ON c2.course_seq = cr.course_seq
+	INNER JOIN tblcoursename cn2
+		ON cn2.coursename_seq = c2.coursename_seq
+	INNER JOIN tblemployment e
+		ON e.student_seq = s.student_seq
+	WHERE s.student_seq = 204
+	ORDER BY s.student_seq;
+
+--경력사항 수정
+UPDATE tblworkexperience we SET we.workspace = '쌍용교육센터' 	WHERE we.workexperience_seq = 127;
+
+--자격증 수정
+UPDATE tblcertify SET ceritifyname_seq = 1 WHERE student_seq = 499;
+
+--희망근무 조건 수정
+UPDATE tblhopeduty SET hopedutyfield = '웹디자이너' WHERE student_seq = 502;
+
+--취업관리사항
+UPDATE tblemployment SET companyname = '쌍용교육센터' WHERE employment_seq = 288;
+
+
+-- D-5
+-- 컴퓨터 이상 보고(등록)
+INSERT INTO tblcommanage (commanage_seq,comendrepair,comstate_seq,commanagedate,comnum,room_seq)
+	values((SELECT max(commanage_seq)+1 FROM tblcommanage),NULL,1,sysdate,34,2);
+
+-- 컴퓨터 이상 목록 조회
+SELECT 
+	c.commanage_seq AS "관리 번호",
+	cs.comstate AS "이상증세",
+	to_char(c.commanagedate,'yyyy-mm-dd') AS "수리신청 시간",
+	CASE 
+		WHEN c.comendrepair IS NOT NULL THEN '수리 완료'
+		WHEN c.comendrepair IS NULL THEN '수리 진행중'
+	END AS "수리완료여부",
+	c.room_seq AS "강의실 번호",
+	comnum AS "컴퓨터 번호",
+	cn.coursename AS "과정명",
+	cs2.coursestatus AS "진행상태"
+FROM tblcommanage c
+	INNER JOIN tblcomstate cs
+		ON c.comstate_seq = cs.comstate_seq
+	INNER JOIN tblcourseroom cr
+		ON cr.room_seq = c.room_seq
+	INNER JOIN tblcourse course
+		ON course.room_seq = cr.room_seq
+	INNER JOIN tblcoursename cn
+		ON cn.coursename_seq = course.coursename_seq
+	INNER JOIN tblcoursestatus cs2
+		ON cs2.coursestatus_seq = course.coursestatus_seq
+	INNER JOIN tblcoursereg cr2
+		ON cr2.course_seq = course.course_seq
+	INNER JOIN tblstudent st
+		ON st.student_seq = cr2.student_seq
+	WHERE st.student_seq = 204 AND c.comnum = 1
+	ORDER BY c.commanage_seq;
+
+-- 자신이 진행중인 설문조사 목록 조회
+SELECT 
+	s.survey_seq AS "관리번호",
+	s2.subject AS "과목명",
+	to_char(cs.coursesubjectstartdate, 'yyyy-mm-dd') || ' ~ ' || to_char(cs.cousesubjectenddate, 'yyyy-mm-dd') AS "과목 기간",
+	sf.surveyfile || '.docs' AS "설문조사 파일명",
+	CASE 
+		WHEN s.surveydate IS NOT NULL THEN '완료'
+		WHEN s.surveydate IS NULL THEN '미완료'
+	END AS "완료여부",
+	s.surveydate AS "완료 날짜"
+FROM tblSurvey s
+	INNER JOIN tblsurveyfile sf
+		ON s.surveyfile_seq = sf.surveyfile_seq
+	INNER JOIN tblstudent st
+		ON st.student_seq = s.student_seq
+	INNER JOIN tblcoursesubject cs
+		ON cs.coursesubject_seq = s.coursesubject_seq
+	INNER JOIN tblsubjectavailability sa
+		ON sa.subjectavailability_seq = cs.subjectavailability_seq
+	INNER JOIN tblsubject s2
+		ON s2.subject_seq = sa.subject_seq
+	WHERE st.student_seq = 502
+	ORDER BY s.survey_seq;
+
+-- 설문조사 완료
+UPDATE tblsurvey SET surveydate = sysdate WHERE survey_seq = 1496; 
+
+-- 사전 진단평가
+SELECT 
+	e.evaulate_seq AS "파일번호",
+	cn.coursename AS "과정명",
+	to_char(c.coursestartdate, 'yyyy-mm-dd') || ' ~ ' || to_char(c.courseenddate, 'yyyy-mm-dd') AS "과정 기간",
+	ef.evaluatefile AS "진단평가 파일명",
+	CASE 
+		WHEN e.evaluatedate IS NOT NULL THEN '완료'
+		WHEN e.evaluatedate IS NULL THEN '미완료'
+	END AS "완료여부",
+	e.evaluatedate AS "완료 날짜"
+FROM tblevaluate e
+	INNER JOIN tblevaluatefile ef
+		ON e.evaluatefile_seq = ef.evaluatefile_seq
+	INNER JOIN tblstudent st
+		ON st.student_seq = e.student_seq
+	INNER JOIN tblcoursesubject cs
+		ON cs.coursesubject_seq = e.coursesubject_seq
+	INNER JOIN tblsubjectavailability sa
+		ON sa.subjectavailability_seq = cs.subjectavailability_seq
+	INNER JOIN tblsubject s2
+		ON s2.subject_seq = sa.subject_seq
+	INNER JOIN tblcourse c
+		ON cs.course_seq = c.course_seq 
+	INNER JOIN tblcoursename cn
+		ON cn.coursename_seq = c.coursename_seq
+	WHERE st.student_seq = 502
+	ORDER BY e.evaulate_seq;
+-- 사전 진단평가 완료
+UPDATE tblevaluate SET evaluatedate = sysdate WHERE evaulate_seq = 1496;
+
+-- 학습안내서 조회
+SELECT 
+	c.course_seq AS "과정번호",
+	cn.coursename AS "과정명",
+	to_char (c.coursestartdate,'yyyy-mm-dd') || ' ~ ' || to_char (c.courseenddate,'yyyy-mm-dd') AS "과정 기간",
+	sq.te AS "강사명",
+	sgf.studyguidefile_seq AS "학습안내서 파일번호",
+	sgf.studyguidefile AS "학습안내서 파일명"
+FROM tblstudyguide sg
+	INNER JOIN tblstudyguidefile sgf
+		ON sg.studyguidefile_seq = sgf.studyguidefile_seq
+	INNER JOIN tblcourse c
+		ON c.course_seq = sg.course_seq
+	INNER JOIN tblcoursename cn
+		ON cn.coursename_seq = c.coursename_seq
+	INNER JOIN (SELECT 
+					course_seq AS seq
+				FROM tblcoursereg
+				GROUP BY course_seq) st
+		ON st.seq = c.course_seq
+	INNER JOIN (SELECT 
+					cs2.course_seq AS co,
+					t2.teachername AS te
+				FROM tblcoursesubject cs2
+					INNER JOIN tblsubjectavailability sa2
+						ON cs2.subjectavailability_seq = sa2.subjectavailability_seq
+					INNER JOIN tblteacher t2
+						ON sa2.teacher_seq = t2.teacher_seq
+					GROUP BY cs2.course_seq, t2.teachername
+					ORDER BY cs2.course_seq) sq
+		ON sq.co = c.course_seq
+	WHERE c.course_seq = 17;
+
+-- 수강상태 조회
+SELECT
+	cn.coursename AS "과목명",
+	to_char (c.coursestartdate,'yyyy-mm-dd') || ' ~ ' || to_char (c.courseenddate,'yyyy-mm-dd') AS "과정 기간",
+	cs.completestate AS "수료상태",
+	to_char(cr.completedate,'yyyy-mm-dd') AS "수료일",
+	s.studentname AS "수강자명",
+	round(((alls.ats + alls.ws + alls.ps)/3), 2) AS "평균 점수"
+FROM tblcoursereg cr
+	INNER JOIN tblcourse c
+		ON cr.course_seq = c.course_seq
+	INNER JOIN tblcompletestate cs
+		ON cs.completestate_seq = cr.completestate_seq
+	INNER JOIN tblcoursename cn
+		ON cn.coursename_seq = c.coursename_seq
+	INNER JOIN tblstudent s
+		ON s.student_seq = cr.student_seq
+	INNER JOIN (SELECT alls.student_seq, avg(attendscore) AS ats, avg(wscore) AS ws, avg(pscore) AS ps FROM tblallscore alls INNER JOIN tblstudent s ON s.student_seq = alls.student_seq GROUP BY alls.student_seq) alls
+		ON alls.student_seq = s.student_seq
+	WHERE s.student_seq = 202;
+
