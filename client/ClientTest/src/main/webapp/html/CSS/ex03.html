@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>d
+    <style>
+        /* 전체 선택자 */
+        /* * {color:blue} */
+
+        /* 태그 선택자 */
+        /* p{
+            color :blue
+        }
+        div{
+            color: red
+        } */
+
+        /* ID 선택자 */
+        h2#title{
+            color:blue;
+        }
+        p#address{
+            color:brown;
+        }
+        p#p1{
+            color:aqua;
+        }
+        /* class 선택자 */
+        div.txt{
+            color:chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        CSS 문법
+
+        선택자{
+            속성명: 값;
+        }
+        선택자{속성명: 값;}
+        
+        선태자{
+            속성명: 값;
+            속성명: 값;
+            속성명: 값;
+        }
+        선택자{속성명: 값;속성명: 값;속성명: 값;}
+
+        CSS 선택자, CSS Selector
+        - 무언가를 선택!!> 검색!!> 태그(********)
+        - HTML 소스에서 특정 태그를 검색하는 도구(**********************)
+        - 검색하는 이유? > 태그 검색:후 서식을 적용하기 위해서..
+
+        CSS 선택자
+        1. 전체 선택자
+        - 모든 태그를 선택한다,
+
+        2. 태그 선택자
+        - 태그명을 가지고 원하는 태그를 선택하다.
+        - 사용 쉬움
+        - 같은 태그를 일괄적용 >  생산성/유지 보수성
+        - 단점 > 같은 태그를 일괄 적용 > 내가 원하는 영역 선택 불가능
+
+        3. ID 선택자
+        - 태그에 명시된 id 속성을 검색해서 태그를 선택한다.
+        - 태그명#ID
+        - 원하는 태그를 직접 선택할 수 있다.
+        - ID > 일괄 적용이 안된다.
+
+        4. class 선택자
+        - 태그에 명시된 class 속성을 검색해서 태그를 선택한다.
+        - 태그명.class
+        - 원하는 태그를 직접 선택할 수 있다.
+    -->
+    <h1>h1 입니다.</h1>
+
+    <p id = "p1">p 입니다.</p>
+    <p id = "p2">p 입니다.</p>
+    <p id = "p3">p 입니다.</p>
+
+    <div class ="txt">div 입니다.</div>
+    <div class ="txt">div 입니다.</div>
+    <div class ="txt">div 입니다.</div>
+  
+    <h2 id="title">h2 입니다.</h2>
+    <p>p 입니다.</p>
+    <div>div 입니다.</div>
+    <ol>
+        <li>li 입니다.</li>
+        <li>li 입니다.</li>
+        <li>li 입니다.</li>
+    </ol>
+    <hr>
+    <h2>회사 소개</h2>
+    <p id="address">오시는 길: 어쩌구 저쩌구</p>
+</body>
+</html>
