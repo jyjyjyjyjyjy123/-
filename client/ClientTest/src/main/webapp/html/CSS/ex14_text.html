@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap');
+        @font-face {
+            font-family: 'S-CoreDream-3Light';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body{
+            /* font-size: 20px; */
+        }
+
+        .txt{
+            /* background-color: yellow; */
+
+            /* 텍스트 색상, 전경색(Fore Color) */
+            color: #333333; /*#333333 ~ #555555*/
+
+            /* 텍스트 정렬(수평 정렬) */
+            text-align: left;
+
+            /* 텍스트 크기 */
+            /* font-size: 12pt; */
+            /* font-size: 16px; */
+            /* font-size: 1pt; */
+            /* font-size: 2em; */
+            /* font-size: 2rem; */
+            /* font-size:  20px; */
+
+            /* 
+            
+                HTML 수치 표현법
+                1. 숫자(PX, 문자수, 셀병합 크기)
+                2. 백분율(%)
+
+                CSS 수치 표현법
+                - 수치 데이터는 반드시(****) 단위 표기를 해야 한다.(생략 불가능 > 동작 안함)
+                1. pt: 포인트(글꼴), 절대값, 1/72인치
+                2. px: 픽셀(모든 분야, 크기, 여백, 위치, 글꼴 등), 절대값
+                3. em: 기본 글꼴 크기를 기준으로 하는 상대 크기(%), 알파벳 대문자 M의 높이를 100%로 하는 상대 크기, 상대값, 상속받음, 부모 글꼴 크기를 100%로 하는 상대크기
+                4. rem: 기본 글꼴 크기를 기준으로 하는 상대 크기(%), 알파벳 대문자 M의 높이를 100%로 하는 상대 크기, 상대값, 상속 안받음, 부모와 상관없이 브라우저의 기본 글꼴 크기를 100%로 하는 상대 크기 
+                10. %: 백분율(크기, 여백, 이치, 정렬 등..), 상대값, 부모의 크기를 기준으로 하는 상대값
+                ---------------------------------------------------------
+                5. ex: 알파벳 소무자 x의 높이를 100%로 하는 상대 크기
+                6. mm: 밀리미터
+                7. cm: 센티미터
+                8. in: 인치
+                9. pc: 파이카(12pt)
+                11. 기타 등등..
+                
+
+             */
+
+             /* 
+                줄간격
+                - line-height
+                - %, em(rem), px
+                - 1.4rem ~ 1.8rem
+             */
+             line-height: 1.4rem;
+
+             /* 
+                스타일(normal, italic)
+             */
+             font-style: normal;
+
+             /*
+                두께(normal, bold) 
+            */
+            font-weight: normal;
+
+            /* 
+                단어 간격(스페이스 크기)
+            */
+            word-spacing: 0rem;
+
+            /* 
+                자간(문자 간격)
+            */
+            letter-spacing: 0rem;
+
+            /* 
+                꾸밈
+            */
+            text-decoration: none;
+
+            /* 
+                폰트(서체, 글꼴)
+                폰트
+                - 페이지 폰트는 서버측 퐅느를 사용하는 것ㅇ ㅣ아니라, 브라우저가 동작 중인 클라이언트 컴퓨터의 폰트를 사용한다(****)
+
+                폰트 예약어
+                - 폰트의 종류를 나타내는 용어
+                1. serif: 획끝에 장식이 있는 폰트(궁서체, 바탕체)
+                2. sans-serif: 획끝에 장식이 없는 폰트(돋움체, 고딕체)
+                3. monospace: 문자폭이 균일(궁서, 궁서체)
+                4. cursive: 장식체
+                5. fantasy: 장식체
+
+                웹 폰트
+                - 폰트를 서버로부터 다운로드 받아서 사용하는 기술
+                - 서핑 중인 페이지에만 적용
+                - https://fonts.google.com/?subset=korean&noto.script=Kore
+                - https://noonnu.cc/
+
+                
+
+                
+            */
+            /* font-family: sans-serif; */
+            /* font-family: '맑은 고딕', '궁서체', '바탕체', monospace; */
+            /* font-family: '맑은 고딕'; */
+            /* font-family: 'Hi Melody', cursive; */
+            font-family: 'S-CoreDream-3Light';
+
+        }
+
+        p{
+            /* 
+            들여쓰기
+            */
+            text-indent: 1rem;
+
+        }
+
+        .txt span{
+            /* background-color: yellow; */
+            /* font-size: 16px; */
+            /* font-size: 2em; */
+            /* font-size: 2rem; */
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <h1>텍스트 관련 속성</h1>
+    <!-- http://guny.kr/stuff/klorem/#/p-html -->
+    <p>국회는 의원의 자격을 심사하며, 의원을 징계할 수 있다. 비상계엄하의 군사재판은 군인·군무원의 범죄나 군사에 관한 간첩죄의 경우와 초병·초소·유독음식물공급·포로에 관한 죄중 법률이 정한 경우에 한하여 단심으로 할 수 있다. 다만, 사형을 선고한 경우에는 그러하지 아니하다. 위원은 정당에 가입하거나 정치에 관여할 수 없다. 국회는 선전포고, 국군의 외국에의 파견 또는 외국군대의 대한민국 영역안에서의 주류에 대한 동의권을 가진다. 의원을 제명하려면 국회재적의원 3분의 2 이상의 찬성이 있어야 한다. 대법관의 임기는 6년으로 하며, 법률이 정하는 바에 의하여 연임할 수 있다. 제안된 헌법개정안은 대통령이 20일 이상의 기간 이를 공고하여야 한다.</p>
+
+    <p class="txt">모든 국민은 건강하고 쾌적한 환경에서 생활할 권리를 가지며, 국가와 국민은 환경보전을 위하여 노력하여야 한다. 국가원로자문회의의 의장은 직전대통령이 된다. 다만, 직전대통령이 없을 때에는 대통령이 지명한다. 헌법개정안은 국회가 의결한 후 30일 이내에 국민투표에 붙여 국회의원선거권자 과반수의 투표와 투표자 과반수의 찬성을 얻어야 한다. 대법원과 각급법원의 조직은 법률로 정한다. 법원은 최고법원인 대법원과 각급법원으로 조직된다. <span>국회는 국민의 보통·평등·직접·비밀선거에 의하여 선출된 국회의원으로 구성한다. 대통령은 조국의 평화적 통일을 위한 성실한 의무를 진다.</span> 근로조건의 기준은 인간의 존엄성을 보장하도록 법률로 정한다.</p>
+
+    <p>감사위원은 원장의 제청으로 대통령이 임명하고, 그 임기는 4년으로 하며, 1차에 한하여 중임할 수 있다. 국가는 청원에 대하여 심사할 의무를 진다. 국회는 국정을 감사하거나 특정한 국정사안에 대하여 조사할 수 있으며, 이에 필요한 서류의 제출 또는 증인의 출석과 증언이나 의견의 진술을 요구할 수 있다. 대한민국은 통일을 지향하며, 자유민주적 기본질서에 입각한 평화적 통일 정책을 수립하고 이를 추진한다. 국가는 사회보장·사회복지의 증진에 노력할 의무를 진다. 정당은 법률이 정하는 바에 의하여 국가의 보호를 받으며, 국가는 법률이 정하는 바에 의하여 정당운영에 필요한 자금을 보조할 수 있다.</p>
+
+    <hr>
+
+    <!-- (p>lorem100)*3 -->
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci perspiciatis illum inventore assumenda autem, cupiditate quo, temporibus accusantium eos quasi saepe omnis provident voluptatem praesentium iste consectetur recusandae illo. Quisquam soluta obcaecati mollitia inventore omnis delectus eum dolore quibusdam sequi accusamus? Cumque consequuntur necessitatibus repellendus vero minima commodi mollitia vitae illo nobis, soluta inventore delectus ab quo fugiat officiis aliquid. Quasi, distinctio iusto? Ut asperiores et rem mollitia placeat qui, temporibus quasi neque, ipsam, nihil eaque! Asperiores nobis id recusandae, numquam nisi mollitia quisquam porro consectetur dignissimos consequuntur minus nostrum praesentium voluptates repellendus beatae vero at ducimus, similique quam officiis.</p>
+
+    <p class="txt">Ad molestias, tenetur aspernatur dolorem placeat voluptatem facilis esse non consequatur voluptate eius nemo at veritatis enim qui quos recusandae, corporis fugiat fugit. Recusandae qui sapiente iusto esse, magnam corrupti id a officia doloribus culpa. Deleniti commodi corporis ipsa a natus mollitia eaque tempora, totam alias quod exercitationem molestiae impedit error eligendi deserunt! Numquam expedita nisi voluptatem quam est. Nemo, fuga eos? Blanditiis voluptatum harum, quos nisi laudantium veritatis enim ducimus repudiandae? Ratione earum possimus consequuntur impedit illo esse quis illum ex molestiae! Maiores, quibusdam maxime alias, deleniti natus consequatur, reprehenderit exercitationem hic fugiat temporibus iusto totam animi optio sint.</p>
+
+    <p>Fugiat expedita ullam dolorum consequuntur eaque exercitationem, laboriosam esse! Labore, nisi perspiciatis corporis fuga tenetur hic fugiat culpa veniam quia eum ullam quis vitae, consequatur temporibus totam voluptatibus odit recusandae pariatur doloribus dolore accusamus! Fuga dolore molestiae praesentium dolorem, quis quas dolorum consequatur et dicta debitis autem optio necessitatibus porro earum soluta obcaecati laborum ad doloremque cupiditate sed minus? Odit provident labore consequatur ad. Ratione dignissimos ab cupiditate in, quaerat fuga labore tenetur odit excepturi facilis vel nam nemo, nihil, voluptatibus aperiam non odio incidunt culpa esse minima vero magni corporis! Provident, animi facilis quos corrupti voluptates in. Eum, impedit!</p>
+</body>
+</html>

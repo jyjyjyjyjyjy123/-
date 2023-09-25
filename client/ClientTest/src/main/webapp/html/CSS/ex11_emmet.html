@@ -66,6 +66,201 @@
     div#box1.one.two.three
     <div id="box1" class="one two three"></div>
     
+    <h1>속성 선택자</h1>
+
+    div[title]{}
+    <div title=""></div>
     
+    div[title]
+    <div title=""></div>
+    
+    div[title=상자]
+    <div title="상자"></div>
+
+    img[width height]
+    <img src="url" alt="text" width="100" height="200">
+
+    img[width=100 height=200]
+    <img src="" alt="" width="100" height="200">
+
+    img#dog1.dog[width=200 height]
+    <img src="" alt="" id="dog1" class="dog" width="200" height="">
+
+    <h1>pcdata(Emment 전용)</h1>
+
+    div{상자}
+    <div>상자</div>
+
+    div#box1.box[title=상자]{상자입니다.}
+    <div id="box1" class="box" title="상자">상자입니다.</div>
+
+    ------------------------------------------------------------------
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <!-- div*5 -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    div.item*5
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+    <div class="item"></div>
+
+    div.item[title]{아이템}*5
+    <div class="item" title="">아이템</div>
+    <div class="item" title="">아이템</div>
+    <div class="item" title="">아이템</div>
+    <div class="item" title="">아이템</div>
+    <div class="item" title="">아이템</div>
+
+    div#box1{상자}*5
+    <div id="box1">상자</div>
+    <div id="box1">상자</div>
+    <div id="box1">상자</div>
+    <div id="box1">상자</div>
+    <div id="box1">상자</div>
+    
+    div#box${상자}*5
+    <div id="box1">상자</div>
+    <div id="box2">상자</div>
+    <div id="box3">상자</div>
+    <div id="box4">상자</div>
+    <div id="box5">상자</div>
+    
+    div#box${상자$}*5
+    <div id="box1">상자1</div>
+    <div id="box2">상자2</div>
+    <div id="box3">상자3</div>
+    <div id="box4">상자4</div>
+    <div id="box5">상자5</div>
+    
+    div#box$${상자}*5
+    <div id="box01">상자</div>
+    <div id="box02">상자</div>
+    <div id="box03">상자</div>
+    <div id="box04">상자</div>
+    <div id="box05">상자</div>
+    
+    div#box$$${상자}*5
+    <div id="box001">상자</div>
+    <div id="box002">상자</div>
+    <div id="box003">상자</div>
+    <div id="box004">상자</div>
+    <div id="box005">상자</div>
+
+
+    <h1>형제 선택자</h1>
+
+    a + b
+    a ~ b
+
+    div+p
+    <div></div>
+    <p></p>
+
+    div~p
+    <!-- 에밋에서 지원안함(중간에 뭐가 있는지 모름) -->
+
+    h1#title1.title{제목}+p.con{내용}*3
+    <h1 id="title1" class="title">제목</h1>
+    <p class="con">내용</p>
+    <p class="con">내용</p>
+    <p class="con">내용</p>
+
+    cat01.jpg ~ cot06.jpg
+    (img[src=images/cat$$.jpg alt=고양이$ title=고양이$ width=250]+br)*6
+    <img src="images/cat01.jpg" alt="고양이1" title="고양이1" width="250"><br>
+    <img src="images/cat02.jpg" alt="고양이2" title="고양이2" width="250"><br>
+    <img src="images/cat03.jpg" alt="고양이3" title="고양이3" width="250"><br>
+    <img src="images/cat04.jpg" alt="고양이4" title="고양이4" width="250"><br>
+    <img src="images/cat05.jpg" alt="고양이5" title="고양이5" width="250"><br>
+    <img src="images/cat06.jpg" alt="고양이6" title="고양이6" width="250"><br>
+
+    <h1>자식 선택자</h1>
+
+    a > b
+    a   b
+
+    div>a
+    <div><a href=""></a></div>
+    div a
+    <!-- 에밋에서 지원안함(중간에 뭐가 있는지 모름) -->
+
+    ul>li*5
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    ul#list>li.item*5
+    <ul id="list">
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+        <li class="item"></li>
+    </ul>
+    
+    ul#list>li.item{항목$}*5
+    <ul id="list">
+        <li class="item">항목1</li>
+        <li class="item">항목2</li>
+        <li class="item">항목3</li>
+        <li class="item">항목4</li>
+        <li class="item">항목5</li>
+    </ul>
+
+    h1#title{오늘의 할일}+ul#list>li.item{할일$}*5
+    <h1 id="title">오늘의 할일</h1>
+    <ul id="list">
+        <li class="item">할일1</li>
+        <li class="item">할일2</li>
+        <li class="item">할일3</li>
+        <li class="item">할일4</li>
+        <li class="item">할일5</li>
+    </ul>
+
+    table>tr>td
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+
+    table>tr*10>td*5(10행 5열)
+    
+    table#tbl1>tr*10>td.cell${항목$}*5
+
+    <h1>제목입니다.</h1>
+    <p>어쩌구 저쩌구</p>
+    Lorem Ipsum
+    lorem 
+    lorem5
+    <!-- lorem은 > 로  -->
+    h1>lorem5
+    <h1>Lorem ipsum dolor sit amet.</h1>
+
+    h1>lorem8+p>lorem50*3
+    ((h1>lorem8+)p>lorem50)*3
+    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis ea enim ratione aut non sequi assumenda. Voluptas eos natus tenetur possimus quisquam repellendus nemo distinctio quas error in amet quam dolores iusto voluptatem pariatur quaerat vitae, libero dolorem doloremque, a cupiditate corrupti debitis. Corrupti, voluptatibus officia sequi ab aperiam vero.</p>
+    <h1>Voluptates libero, obcaecati aliquid voluptatem ipsum excepturi omnis!</h1>
+    <p>Et tenetur distinctio, odio omnis accusamus enim maiores quis aut sint hic aspernatur, dolores quisquam veritatis eaque autem, incidunt provident? Est nesciunt aspernatur animi, vitae consequatur aliquid iste quis placeat quidem quaerat, vero facilis veniam quo nihil, reprehenderit id pariatur non eum voluptatibus culpa eos dicta? Quam rem praesentium repellendus?</p>
+    <h1>Quos velit praesentium enim modi voluptates! Est, nesciunt.</h1>
+    <p>Incidunt enim quae rem quam repudiandae nostrum fuga ipsa veritatis vitae! Tempore numquam nihil quidem officiis tenetur veniam laborum similique excepturi hic dolorem magni atque nisi soluta modi fugiat beatae, accusamus rerum in ullam labore laudantium. Sequi neque, tempora repellat voluptas, possimus, officiis porro earum temporibus omnis maxime aspernatur doloremque?</p>
+
 </body>
 </html>
