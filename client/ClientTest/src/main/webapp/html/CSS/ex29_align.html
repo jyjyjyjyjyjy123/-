@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 
+            
+            태그의 수평 정렬
+            - 인라인 태그 vs 블럭 태그
+
+            1. 내용물의 정렬 > text-align
+                a. 인라인 태그 
+                    - 불가능 > 좌우의 여백이 없어서
+                b. 블럭 태그 
+                    - 가능 > 좌우의 여백이 있어서
+                    - text-align 속성은 블럭 태그 전용
+
+            2. 태그 자체의 위치를 정렬 > 지원하는 속성 없음
+                a. 인라인 태그
+                    - text-align
+                b. 블럭 태그 
+                    - 불가능 > 좌우 여백이 없어서
+                    - 가능 > margin
+        
+
+        */
+        
+
+        body {
+            margin: 0;
+        }
+
+        #span1, #div1 {
+            background-color: gold;
+        }
+
+        #span1 {
+            text-align: left;
+        }
+        
+        #div1 {
+            text-align: center;
+            width: 150px;
+            /* margin-left: calc(50% - 75px); */
+            /* margin-left:  auto;
+            margin-right: auto; */
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>태그의 수평 정렬</h1>
+
+    <h2>인라인 태그</h2>
+
+    <div style="text-align: center;">
+        <span id="span1">인라인 태그</span>
+    </div>
+
+    <h2>블럭 태그</h2>
+
+    <div id="div1">블럭 태그</div>
+
+
+</body>
+</html>

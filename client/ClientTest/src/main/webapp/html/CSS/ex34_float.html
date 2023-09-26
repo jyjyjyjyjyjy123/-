@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* #list {
+            font-size: 0;
+        } */
+
+        #list .box {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            /* display: inline-block; */
+            /* font-size: 1rem; */
+            float: left;
+        }
+        
+        #list::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>컨텐츠</h1>
+
+    <div id="list">
+        <div id="box1" class="box">상자1</div>
+        <div id="box2" class="box">상자2</div>
+        <div id="box3" class="box">상자3</div>
+        <!-- <div style="clear: both;"></div> -->
+    </div>
+
+    <h2>또 다른 내용..</h2>
+
+</body>
+</html>

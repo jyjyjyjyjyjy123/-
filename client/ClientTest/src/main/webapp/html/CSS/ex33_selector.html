@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 
+            CSS 선택자
+            1. :first-child
+                - 가상 클래스
+            2. ::before
+                - 가상 요소
+
+            전후 선택자
+            - 선택한 요소의 앞/뒤에 추가로 내용을 생성하는 역할
+            1. ::before = :before
+            2. ::after = :after
+        */
+
+        p > span {
+            color: blue;
+        }
+
+        /* p > span::before {
+            content: '[';
+            color: orange;
+        }
+
+        p > span::after {
+            content: ']';
+            color: orange;
+        } */
+
+        p > span.tel::before{
+            content: '☏';
+            margin-right: 3px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <span>Corrupti labore quasi</span> similique debitis ratione eveniet pariatur quis in ut, <span>excepturi eaque cum?</span> Excepturi <span class="tel">010-1234-1234</span> id ratione est asperiores. <span>Ratione</span>, fugiat?</p>
+
+</body>
+</html>
