@@ -1,0 +1,25 @@
+body {
+    margin-bottom: 500px;
+}
+.box{
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+}
+#box1{
+    background-color: tomato;
+}
+#box2{
+    background-color: gold;
+}
+#box3{
+    background-color: cornflowerblue;
+}
+
+body:hover #box2 {
+    /* background-color: blue; */
+    transform: rotate(45deg);
+    /* 변화 중심축 지정(열거형, %, px) */
+    transform-origin: 100% 0%;
+}
