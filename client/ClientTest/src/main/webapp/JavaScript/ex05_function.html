@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        /*
+            *** JavaScript에서는 자료형을 명시적으로 표현이 불가능하다.
+            - number, string, boolean, object
+            - 변수 생성 > int num > number num > var num
+            - 반환값 선언 > 자료형 기재 불가능
+            - 배열 선언 > int[] nums > var nums
+
+            Java Method
+            public [static] int m1(int num) {
+                return 10;
+            }
+
+            JavaScript Function
+            function m1(num) {
+                return 10;
+            }
+
+        */
+
+        function m1() {
+            console.log('m1');
+        }
+        
+        m1();
+
+        function m2(name) {
+            console.log('name: ' + name);
+            
+            //내장 배열 > 자바스크립트가 스스로 만들어서 제공하는 배열
+            //- arguments
+            //- 함수의 실인자값들을 저장하는 내장 배열
+            console.log(arguments[0]);
+            console.log(arguments[1]);
+            console.log(arguments[2]);
+        }
+
+        m2('홍길동');
+        m2('아무개');
+        m2('하하하');
+        m2();//사용금지
+        console.clear();
+        m2('홍길동','아무개','하하하');//사용금지 
+
+        function m3(name, age) {
+            console.log(name, age);
+        }
+
+
+        //JavaScript > 값이 없음
+        //1. null > 개발자가 의도적으로 비어놓은 상태
+        //2. undefined > 변수가 선언된 직후 상태(초기화되기 전)
+        
+        m3('홍길동', 20);
+
+        //==, !=
+        //- 자료형의 비교를 하지 않는다.
+        //- 값만 비교한다.
+
+        //===,!==
+        //- 진성 비교 연산자
+        //- 자료형의 비교를 한다.
+        //- 값의 비교를 한다.
+
+        console.log(undefined == null); //t
+        console.log(undefined === null); //f
+
+        console.log(undefined != null); //f
+        console.log(undefined !== null); //t
+        
+        console.log(10=='10'); //t
+        console.log(10==='10'); //f
+
+        function m4() {
+            return 100;
+        }
+
+        console.log(m4());
+
+    </script>
+</body>
+</html>

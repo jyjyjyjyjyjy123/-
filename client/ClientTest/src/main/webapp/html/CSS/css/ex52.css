@@ -1,0 +1,135 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+/* html {
+    border: 10px solid violet;
+}
+body {
+    border: 10px solid blue;
+} */
+
+main {
+    display: grid;
+    grid-template-rows: 50px 200px auto;
+    grid-template-columns: 200px minmax(800px, 1fr);
+    /* height: 100%; */
+    height: 100vh;/* viewport-height */
+}
+
+#menu {
+    background-color: orange;
+    grid-row: 1/4;
+    text-align: center;
+}
+#menu > h1 {
+    color: white;
+}
+#menu > hr {
+    border: 0;
+    border-bottom: 1px solid white;
+}
+#menu > ul {
+    padding: 0;
+    color: white;
+}
+#menu > div {
+    color: white;
+    font-size: 14px;
+    padding: 20px;
+}
+
+
+#search {
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search input[type=text] {
+    border: 1px solid yellow;
+    width: 430px;
+    padding: 5px;
+    outline: none;
+}
+#search button {
+    width: 100px;
+    height: 27px;
+    border: 1px solid yellow;
+    background-color: yellow;
+}
+
+
+#banner {
+    background-color: green;
+}
+#banner > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
+#list {
+    background-color: cornflowerblue;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+#list > div {
+    background-color: yellowgreen;
+}
+#list > div > img {
+    display: block;
+    margin: 20px auto;
+    border: 3px solid white;
+    padding: 3px;
+}
+#list > div > div {
+    margin: 30px;
+    font-size: 14px;
+    color: #555;
+}
+
+        /* 스마트폰에서 태블릿 세로 크기가 될 때쯤 보이는 화면을 변경 */
+        @media screen and (max-width: 768px) {
+            
+            /* * { font-family: 궁서체;} */
+            
+            main {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 210px 50px 200px auto;
+                height: 100vh;
+            }
+            
+            /* ----------------------------------------------------------------------------- */
+            
+            #menu {
+                grid-row: auto; /* 메뉴 부분 밑 여백 지우기 */
+            }
+            
+            #menu ul {
+                display: flex;
+                justify-content: center;
+                margin: 0;
+            }
+            
+            #menu li {
+                list-style-type: none;
+                margin: 0px 7px;
+            }
+
+            #menu hr {
+                display: none;
+            }
+            
+            /* ----------------------------------------------------------------------------- */
+
+            #list {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+        }

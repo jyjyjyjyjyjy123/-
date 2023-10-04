@@ -1,0 +1,31 @@
+
+#box {
+    border: 20px solid black;
+    width: 400px;
+    height: 800px;
+}
+
+#ball {
+    background-color: dodgerblue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+
+
+    animation-name: key-ball;
+    animation-duration: 0.7s;
+    /* animation-fill-mode: forwards; */
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in;
+}
+
+@keyframes key-ball {
+    from { transform:  translate(0px, 0px);}
+    to { transform:  translate(0px, 750px);}
+}
+
+/* 게임 구현 가능? > 가능O > 안함 */
+/* HTML Canvas > 게임 구현 */
+/* 그래프 or 차트 > 직접 구현(X) > 라이브러리*/

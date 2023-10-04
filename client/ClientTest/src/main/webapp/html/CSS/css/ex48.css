@@ -1,0 +1,189 @@
+body{
+    padding-bottom: 300px;
+}
+
+.box{
+    border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    margin: 30px;
+}
+
+#box1 { background-color: tomato;}
+#box2 { background-color: gold;}
+#box3 { background-color: dodgerblue;}
+
+
+
+/* 
+
+    css 객체 움직임
+    1. transtion > 단순한 움직임
+    2. animation > transition + 세밀하게 통제
+
+    애니메이션
+
+
+*/
+
+#box1{
+    /* transition: all 1s; */
+}
+
+@keyframes key1 {
+    /* 어떤 속성 + 어떤 변화값 */
+    from {
+        width: 150px;
+        height: 150px;
+    }
+    to {
+        width: 500px;
+        height: 500px;
+    }
+}
+
+body:hover #box1 {
+    /* width: 500px;
+    height: 500px; */
+    /* animation-name: key1; */
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes key2 {
+    /* 
+        from: 0s
+        to: 1s
+
+        0%: 0s
+        50%: 0.5s
+        100%: 1s
+    */
+    
+    /* from {width: 150px;}
+    to {width: 500px;} */
+    /* 0% {
+        width: 150px;
+    }
+    50%{
+        width: 200px;
+    }
+    100% {
+        width: 500px;
+    } */
+
+    0%{transform: translate(0px, 0px);}
+    25%{transform: translate(300px, 0px);}
+    50%{transform: translate(300px, 300px);}
+    75%{transform: translate(0px, 300px);}
+    100%{transform: translate(0px, 0px);}
+
+}
+
+body:hover #box2 {
+    animation-name: key2; /* 프레임 정의(움직임 */
+    /*animation-duration: 2s;*/ /* 소요 시간 */
+    /* animation-fill-mode: forwards; */
+    animation-timing-function: linear; /* 가속도 제어 */
+    /* animation-delay: 1s;*/ /* 지연 시간 */
+    animation-iteration-count: infinite;
+    /* animation-play-state: paused; */
+    animation-direction: alternate;
+}
+
+#box2 {
+}
+
+.effect {
+    padding: 10px;
+}
+
+/* 버튼 + hover > 떨림(진동) */
+
+
+.effect:hover {
+    /* animation-name: key-effect; */
+    animation-name: key-effect2;
+    animation-duration: 0.05s;
+    animation-iteration-count: 3;
+}
+
+@keyframes key-effect {
+    0% { transform: translate(0px, 0px);}
+    25% { transform: translate(-5px, 0px);}
+    50% { transform: translate(0px, 0px);}
+    75% { transform: translate(5px, 0px);}
+    100% { transform: translate(0px, 0px);}
+}
+@keyframes key-effect2 {
+    0% { transform: scale(1, 1);}
+    25% { transform: scale(1.2, 1.2);}
+    50% { transform: scale(1, 1);}
+    75% { transform: scale(0.8, 0.8);}
+    100% { transform: scale(1, 1);}
+}
+
+.effect3 {
+    padding: 5px;
+}
+.effect3:hover > i {
+    animation-name: key-effect;
+    animation-duration: 0.05s;
+    animation-iteration-count: infinite;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

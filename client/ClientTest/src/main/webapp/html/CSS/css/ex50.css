@@ -1,0 +1,187 @@
+body {
+    padding-bottom: 300px;
+}
+/* 
+    display: flex
+    - flex box, flexiable box
+    - 레이아웃 작성 > 내부의 요소를 어떻게 배치?
+    - float + position + margin + padding
+*/
+
+/* #box {
+    border: 10px solid black;
+    font-size: 0px;
+}
+
+#box .item {
+    display: inline;
+    font-size: 1rem;
+} */
+
+
+
+
+/* #box {
+    border: 10px solid black;
+    overflow: hidden;
+} */
+
+/* #box::after {
+    content: '';
+    display: block;
+    clear: both;
+} */
+
+/* #box .item {
+    float: left;;
+} */
+
+
+
+#box {
+    border: 10px solid black;
+    width: 800px;
+    height: 800px;
+    display: flex;
+
+    /* 
+    
+        기본 상태(display: flex)
+        - 메인축(아이템을 나열하는 방향): 가로(왼쪽>오른쪽)
+        - 수직축(메인축의 직각 방향): 세로(위쪽>아래쪽)
+        - 아이템 너비: 요소만큼
+        - 아이템 높이: 부모만큼
+
+    */
+    /* 
+        row: 행을 메인축
+        colum: 열을 메인축으로
+
+        flex-direction
+        -아이템의 배치방향
+    */
+    /* flex-direction: row; */
+    /* flex-direction: column; */
+    /* flex-direction: row-reverse; */
+    /* flex-direction: column-reverse; */
+
+
+    /* 
+        flex-warp
+        - 자동 줄바꿈
+    */
+    /* flex-wrap: wrap; */
+
+    /* 
+        flex 관련 속성명
+        1. justify-
+            : 메인축 방향
+        2. align-
+            : 수직축 방향
+        justify-content
+        - 메인축 박향으로 아이템을 어떻게 정렬
+    */
+    /* flex-direction: row-reverse; */
+    /* justify-content: flex-end; */
+    /* justify-content: center; */
+    /* justify-content: space-between; */
+    /* justify-content: space-evenly; */
+
+    /* 
+        align-items
+        - 수직축 방향으로 아이템을 어떻게 정렬?
+        - justify-conftent 반대
+    */
+    /* align-items: center; */
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+}
+
+
+
+#box .item:nth-child(5n + 1) {background-color: tomato;}
+#box .item:nth-child(5n + 2) {background-color: orange;}
+#box .item:nth-child(5n + 3) {background-color: gold;}
+#box .item:nth-child(5n + 4) {background-color: greenyellow;}
+#box .item:nth-child(5n + 5) {background-color: dodgerblue;}
+
+
+
+
+#title1 {
+    font-variant: small-caps;
+    color: #333;
+    font-family: Arial;
+    border-bottom: 1px dashed #999;
+    width: 600px;
+}
+
+#title1 small {
+    font-size: 1rem;
+    float: right;
+    margin-top: 15px;
+}
+
+#title2 {
+    font-variant: small-caps;
+    color: #333;
+    font-family: Arial;
+    border-bottom: 1px dashed #999;
+    width: 600px;
+    
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+#title2 small {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+/* #parent {
+    width: 300px;
+    height: 300px;
+    background-color: gold;
+    padding-top: 200px;
+    padding-left: 200px;
+}
+
+#child {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+} */
+
+/* #parent {
+    width: 500px;
+    height: 500px;
+    background-color: gold;
+    position: relative;
+    left: 0px;
+    top: 0px;
+}
+
+#child {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+    position: absolute;
+    left: 200px;
+    top: 200px;
+} */
+
+#parent {
+    width: 500px;
+    height: 500px;
+    background-color: gold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#child {
+    width: 100px;
+    height: 100px;
+    background-color: cornflowerblue;
+}
