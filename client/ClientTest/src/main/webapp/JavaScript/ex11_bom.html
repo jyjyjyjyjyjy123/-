@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>BOM, Browser Object Model</h1>
+    
+    <form name="form1">
+        <input type="text" name="txt1">
+    </form>
+
+    <script>
+        /*
+            CSS > 선택자(HTML 태그 검색) > 접근 > 조작
+            JavaScript > HTML 태그 검색 > 접근 > 조작
+
+            HTML 계층 구조
+            - Tree 구조
+
+            1. BOM
+                - 초창기 모델
+                - 현재까지 계속 사용
+                - 선택적 모델 > 계층 구조에 일부 태그만 포함
+                - 계층 구조에 포함되지 않는 태그는 조작 불가능
+                - 이미지, 링크, 폼태그 > 조작 가능
+                - 태그의 name을 사용해서 검색
+                - id, class는 인식 불가능
+
+            2. DOM
+                - 발전 모델
+                - 현재까지 계속 사용
+                - 전역 모델 > 계층 구조에 모든 태그가 포함
+                - 모든 태그 조작 가능
+
+        */
+
+        //BOM/DOM > 태그 접근 > 계층 구조 접근
+        //- window: 윈도우 객체 > 현재 문서가 실행되는 브라우저 창 참조 
+        //- document: 문서 객체 > 현재 문서 참조 
+    
+        window.document.form1.txt1.value = '홍길동';
+
+        // window.close();
+    </script>
+</body>
+</html>

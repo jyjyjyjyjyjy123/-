@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JavaScript로 태그의 속성 제어하기</h1>
+
+    <form name="form1">
+        <input type="text" name="txt1">
+        <input type="button" value="끄기" name="btn1">
+    </form>
+    <script>
+        var txt1 = window.document.form1.txt1;
+        var btn1 = window.document.form1.btn1;
+        
+        btn1.onclick = m1;
+
+        function m1() {
+            /* 
+                HTML 속성 제어하기
+                1. HTML의 대부분의 속성은 JavaScript에서 동일한 이름의 프로퍼티를 제공한다.
+                2. HTML 속성명이 복합어 > JavaScript > 캐멀표기법으로 제공 
+                3. 플래그 타입의 속성 > boolean 값으로 조작
+                4. 열거형 속성/색상 속성 > 문자열로 조작
+            */
+
+            //텍스트 박스 조작
+            //- txt1.프로퍼티
+            // txt1.value = '홍길동'; //쓰기
+            // alert(txt1.value);
+            // txt1.size++;
+            // txt1.maxLength = 5;
+            // txt1.readOnly = true;
+
+            //<body> bgcolor="blue"
+            // window.document.body.bgColor = "blue";
+            
+            
+            // txt1.type = 'radio'; //이런 행동은 되도록 금지
+            // txt1.name = 'txt2'; //식별자 바꾸는 행동 절대 금지
+            
+
+            //하나의 버튼 > On/Off > 토글 버튼(Toggle Button), 스위치
+            if (window.document.body.bgColor != '#000') {
+                window.document.body.bgColor = '#000';
+                btn1.value = '켜기';
+            } else {
+                window.document.body.bgColor = '#fff';
+                btn1.value = '끄기';
+            }
+        }
+    </script>
+
+</body>
+</html>

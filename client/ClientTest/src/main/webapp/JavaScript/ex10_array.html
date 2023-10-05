@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            자바스크립트 배열
+            - Array(외형) + ArrayList(성질 > 길이 가변, 자료형 Object)
+        */
+
+        // int[] nums = new int[3]; > 자바
+        var nums = new Array();
+        
+        nums[0] = 100;
+        nums[1] = 200;
+        nums[2] = 300;
+
+        // nums[5] = 600; //비추천
+
+        for (var i = 0; i < nums.length; i++) {
+            console.log(i, nums[i]);
+        }
+
+        //초기화 리스트
+        // int[] nums = {100,200,300}; > 자바
+        var nums2 = new Array(100, 200, 300);
+        var nums3 = [100, 200, 300]; //*** 주로사용
+        console.log(nums2);
+        console.log(nums3);
+
+        //빈배열
+        var nums4 = new Array();
+        var nums5 = []; //*** 가장 많이 사용하는 방식
+
+        //3의 배수 > 10개
+        var list1 = [];
+
+        for (var i = 0; i < 10; i++) {
+            list1[i] = (i+1)*3;
+        }
+
+        console.log(list1);
+        
+        var list2 = [];
+        
+        for (var i = 3; i <= (3*10); i+=3) {
+            list2.push(i);  //push, append 
+        }
+        console.log(list2);
+
+        console.log(list2.pop());
+        console.log(list2);
+
+        </script>
+</body>
+</html>

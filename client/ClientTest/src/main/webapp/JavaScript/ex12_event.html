@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            display: block;
+            margin-bottom: 5px;
+         }
+    </style>
+</head>
+<body>
+    <h1>Event</h1>
+    <form name="form1">
+        <input type="text" name="txt1">
+        <input type="button" value="버튼" name="btn1" onclick="window.document.form1.txt1.value = '홍길동';">
+        <input type="button" value="버튼" name="btn2" onclick="m2();">
+        <input type="button" value="버튼" name="btn3">
+    </form>
+    <script>
+        // window.document.form1.txt1.value = '홍길동';
+        function m2() {
+            window.document.form1.txt1.value = '아무개';
+        }
+        /*
+            JavaScript Event
+            - 사건
+            - 객체(태그 포함)
+            - 언제 발생할지 예측 불가능
+
+            JavaScript Event Handling
+            - 이벤트 처리/등록
+            - 언제 발생할지 예측 불가능한 사건에 대비해서 미리 처리할 코드를 준비
+                > 언젠가 사건이 발생하면 준비해놓은 코드를 자동으로 실행할 수 있다.
+                > 이벤트 처리 
+            - 오라클 > 트리거
+
+            이벤트 등록
+            - onxxx 속성(프로퍼티) 제공
+            1. 정적
+                - HTML 태그에 적용
+            2. 동적
+                - 자바스크립에서 사용
+        */
+        // if ((new Date).getSeconds() % 2 == 0){
+            window.document.form1.btn3.onclick = m3; //함수 포인터
+        // }
+        function m3() {
+            window.document.form1.txt1.value = '하하하';
+        }
+    </script>
+</body>
+</html>

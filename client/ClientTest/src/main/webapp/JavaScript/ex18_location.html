@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>location 객체</h1>
+
+    <form name="form1">
+        <input type="button" value="버튼" name="btn1">
+    </form>
+
+    <ul>
+        <li><a href="https://naver.com">네이버(n)</a></li>
+        <li><a href="https://google.com">구글(g)</a></li>
+        <li><a href="https://daum.net">다음(d)</a></li>
+    </ul>
+
+    <script>
+        window.document.form1.btn1.onclick = m1;
+
+        function m1() {
+            //loaction
+            //- 현재 창의 페이지 주소와 관련된 객체 > URL
+
+            // console.log(window.location.href); //읽기
+
+            //페이지 이동
+            //window.location.href = 'https://naver.com'; //쓰기
+            //window.location.assign('https://google.com');
+
+            //새로고침
+            // window.location.reload();
+        }
+
+        //전역 이벤트 > 어떤 상황에서든 행동하던지 항상 발생하는 이벤트
+        window.onkeydown = m2;
+        function m2() {
+            // alert(event.keyCode);
+            if (event.keyCode == 78) {
+                window.location.href = 'https://naver.com';
+            } else if (event.keyCode == 71) {
+                window.location.href = 'https://google.com';
+            } else if (event.keyCode == 68) {
+                window.location.href = 'https://daum.net';
+            }
+        }
+
+    </script>
+
+</body>
+</html>

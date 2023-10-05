@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>history 객체</h1>
+    <form name="form1">
+        <input type="button" value="뒤로 가기" name="btn1">
+        <input type="button" value="앞으로 가기" name="btn2">
+        <input type="button" value="뒤로 가기(2단계)" name="btn3">
+    </form>
+
+    <script>
+        /* 
+            history 객체
+            - 브라우저 발자취
+            - 브라우저가 방문한 탐색 기록 > 접근 객체
+
+            ex19 > naver > google > ex19 > daum > cupang > 
+        */
+        window.document.form1.btn1.onclick = m1;
+        window.document.form1.btn2.onclick = m2;
+        window.document.form1.btn3.onclick = m3;
+
+        function m1() {
+            window.history.back(); //뒤로 가기
+        }
+        function m2() {
+            window.history.forward(); //앞으로 가기
+        }
+        function m3() {
+            window.history.go(-2);
+        }
+
+        //오늘은(10.05)
+        //BOM
+        //1. 객체 접근
+        //2. 이벤트
+        //3. 속성 조작
+        //4. window, screen, location, history
+
+    </script>
+</body>
+</html>

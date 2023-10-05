@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //자바스크립트는 클래스가 없다.
+        //내장 객체라는 것을 제공 > 객체 생성
+
+        //날짜/시간
+        //- Date 객체
+
+        //현재 시각
+        var now = new Date(); //new 생성자함수();
+        console.log(now);
+        console.log(now.toString());
+        console.log(typeof now); //모든 객체들은 object
+
+        //요소 추출
+        //- c.get(Calencar.YEAR)
+        console.log(now.getYear());
+        console.log(now.getFullYear());
+        console.log(now.getMonth());
+        console.log(now.getDate());
+        console.log(now.getDay()); //0(일) ~ 6(토)
+        console.log(now.getHours());
+        console.log(now.getMinutes());
+        console.log(now.getSeconds());
+        console.log(now.getMilliseconds());
+        console.log(now.getTime());
+
+        //출력 > %tF, %tT, %tA
+        console.log(now.toString());
+        console.log(now.toDateString());        //년월일
+        console.log(now.toTimeString());        //시분초
+        console.log(now.toLocaleString());      //한국식
+        console.log(now.toLocaleDateString());  //년월일
+        console.log(now.toLocaleTimeString());  //시분초
+
+
+        //특정 시각 만들기
+        var christmas = new Date();
+
+        christmas.setFullYear(2023);
+        christmas.setMonth(11);
+        christmas.setDate(25);
+        christmas.setHours(12);
+        christmas.setMinutes(0);
+        christmas.setSeconds(0);
+        console.log(christmas.toLocaleString());
+        
+
+        var birthday = new Date(1999, 9, 10, 12, 30, 0);
+        console.log(birthday.toLocaleString());
+
+
+        //연산
+        //시각 - 시각
+        console.log(christmas-now); //ms
+        console.log((christmas-now)/1000/60/60/24); //크리스마스까지 81일 남음
+        console.log((now-birthday)/1000/60/60/24); //태어난지 8760
+
+
+        //시각 + 시간
+        //시각 - 시간
+        //오늘 만난 커플이 100일 기념일?
+        var ani = new Date();
+        ani.setTime(now.getTime() + (100*24*60*60*1000));
+        console.log(ani.toLocaleString());
+
+
+
+    </script>
+</body>
+</html>

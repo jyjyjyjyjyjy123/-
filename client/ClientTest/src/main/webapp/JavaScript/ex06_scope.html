@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //변수의 스코프
+        //여러가지 함수들...
+        //배열
+
+        /*
+            변수 스코프
+            - 변수 생명 주기
+            - 변수 영역
+
+            자바
+            1. 멤버 변수 > 클래스 전역
+            2. 지역 변수 > 메소드 or 제어문 전역 
+
+            자바스크립트
+            1. 전역 변수 > 한 페이지 > 변수 선언문 실행(생성) ~ 페이지 종료
+            2. 지역 변수 > 함수 or 제어문 전역
+                - 자바스크립트의 지역 변수는 함수 단위 지역 변수이다.
+                - 함수만 자기 영역으로 인식한다. > 함수 스코프
+                - 제어문은 영역으로 인식을 못한다.
+
+        */
+
+        var num1 = 100; //전역 변수. <script> 태그내에서 직접 선언
+
+        function m1() {
+            var num2 = 200; //지역 변수. m1을 영역
+            console.log('num2', num2);
+        }
+        
+        m1();
+        // console.log('num2', num2);
+
+        if (num1 > 0) {
+            console.log('참');
+            var num3 = 300; //지역 변수(x) > 전역 변수(o)
+            console.log('num3', num3);
+        }
+        
+        console.log('num3', num3);
+
+        for (var i=0; i<10; i++) {
+            console.log(i);
+        }
+
+        console.log(i);
+
+        //*** var 키워드 없이 선언한 변수 > 모두 전역 변수이다. > 사용(x)
+
+        var num4 = 400;     //전역 변수
+        num5 = 500;         //전역 변수 > 사용(X)
+
+        function m2() {
+            var num6 = 600; //지역 변수
+            num7 = 700;     //지역 변수(x) > 전역 변수 > 사용(X)
+        }
+        m2();
+        // console.log(num6);
+        console.log(num7);
+
+
+
+
+
+    </script>
+</body>
+</html>
