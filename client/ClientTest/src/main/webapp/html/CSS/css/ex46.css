@@ -31,7 +31,7 @@ body:hover #box {
     /* box-shadow: 10px 10px 5px #555; */
     /* margin-left: 300px; */
     /* border-width: 50px; */
-    /* transform: translate(100px,100px); */
+    /* transform: translat e(100px,100px); */
     /* transform: scale(-1,1); */
-    /* transform: rotate(3600deg); */
+    transform: rotate(3600deg);
 }

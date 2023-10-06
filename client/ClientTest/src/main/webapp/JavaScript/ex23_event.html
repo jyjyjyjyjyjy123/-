@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item {
+            border: 1px solid #ccc;
+            background-color: #eee;
+            padding: 10px;
+            width: 400px;
+            text-align: center;
+            margin: 15px;
+        }
+        .item > input[type=button] {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            width: 100px;
+            height: 60px;
+            margin: 10px;
+            outline: none;
+        }
+        .item > input[type=button]:hover {
+            box-shadow: 0px 0px 3px gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>다량의 요소의 이벤트 처리(일괄 처리)</h1>
+
+    <form name="form1">
+        <!-- <div class="item">
+            <input type="button" name="btnRed" value="빨강">
+            <input type="button" name="btnYellow" value="노랑">
+            <input type="button" name="btnBlue" value="파랑">
+        </div> -->
+        1
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" onclick="m1();">
+            <input type="button" name="btnYellow" value="노랑" onclick="m2();">
+            <input type="button" name="btnBlue" value="파랑" onclick="m3();">
+        </div>
+        2
+        <div class="item">
+            <input type="button" name="btnRed2" value="빨강">
+            <input type="button" name="btnYellow2" value="노랑">
+            <input type="button" name="btnBlue2" value="파랑">
+        </div>
+        3
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" onclick="m7('tomato');">
+            <input type="button" name="btnYellow" value="노랑" onclick="m7('gold');">
+            <input type="button" name="btnBlue" value="파랑" onclick="m7('cornflowerblue');">
+        </div>
+        4
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" onclick="m8(this);">
+            <input type="button" name="btnYellow" value="노랑" onclick="m8(this);">
+            <input type="button" name="btnBlue" value="파랑" onclick="m8(this);">
+        </div>
+        5
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" onclick="m9(this);">
+            <input type="button" name="btnYellow" value="노랑" onclick="m9(this);">
+            <input type="button" name="btnBlue" value="파랑" onclick="m9(this);">
+        </div>
+        6
+        <!-- 사용자 정의 속성: 자바스크립트용 -->
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" data-color="tomato" onclick="m10(this);">
+            <input type="button" name="btnYellow" value="노랑" data-color="gold" onclick="m10(this);">
+            <input type="button" name="btnBlue" value="파랑" data-color="cornflowerblue" onclick="m10(this);">
+        </div>
+        7
+        <div class="item">
+            <input type="button" name="btnRed" value="빨강" data-color="tomato" onclick="m11();">
+            <input type="button" name="btnYellow" value="노랑" data-color="gold" onclick="m11();">
+            <input type="button" name="btnBlue" value="파랑" data-color="cornflowerblue" onclick="m11();">
+        </div>
+        8
+        <div class="item">
+            <input type="button" name="btnRed3" value="빨강" data-color="tomato">
+            <input type="button" name="btnYellow3" value="노랑" data-color="gold">
+            <input type="button" name="btnBlue3" value="파랑" data-color="cornflowerblue">
+        </div>
+        9
+        <div class="item">
+            <input type="button" name="btn" value="빨강" data-color="tomato">
+            <input type="button" name="btn" value="노랑" data-color="gold">
+            <input type="button" name="btn" value="파랑" data-color="cornflowerblue">
+            <input type="button" name="btn" value="주황" data-color="orange">
+            <input type="button" name="btn" value="초록" data-color="yellowgreen">
+        </div>
+    </form>
+
+    <hr>
+
+    <img src="/asset/images/catty01.png" name="cat">
+    <img src="/asset/images/catty02.png" name="cat">
+    <img src="/asset/images/catty03.png" name="cat">
+    <img src="/asset/images/catty04.png" name="cat">
+    <img src="/asset/images/catty05.png" name="cat">
+    
+    <hr>
+    
+    <img src="/asset/images/dog.jpg">
+
+    <script>
+        // 1
+        function m1() {
+            document.body.bgColor = 'tomato';
+        }
+        function m2() {
+            document.body.bgColor = 'gold';
+        }
+        function m3() {
+            document.body.bgColor = 'cornflowerblue';
+        }
+        // 2
+        document.form1.btnRed2.onclick = m4;
+        document.form1.btnYellow2.onclick = m5;
+        document.form1.btnBlue2.onclick = m6;
+        function m4() {
+            document.body.bgColor = 'tomato';
+        }
+        function m5() {
+            document.body.bgColor = 'gold';
+        }
+        function m6() {
+            document.body.bgColor = 'cornflowerblue';
+        }
+        // 3
+        function m7(color) {
+            document.body.bgColor = color;
+        }
+        // 4
+        //이벤트 > this > 이벤트가 걸린 태그 자신
+        function m8(btn) {
+            // alert(btn.name);
+            var color;
+            if (btn.name == 'btnRed'){
+                color = 'tomato';
+            } else if (btn.name == 'btnYellow') {
+                color = 'gold';
+            } else if (btn.name =='btnBlue') {
+                color = 'cornflowerblue';
+            }
+            document.body.bgColor = color;
+        }
+        // 5
+        function m9(btn) {
+            //name=btnBlue
+            document.body.bgColor = btn.name.substr(3);
+        }
+        // 6
+        function m10(btn) {
+            document.body.bgColor = btn.dataset['color'];
+        }
+        // 7
+        function m11() {
+            // 어떤 버튼 클릭?
+            // 이벤트 발생 시킨 객체 > 눌린 버튼?
+            // event.srcElement.name > this //비표준(MS)
+            // event.target.name > this     //표준
+            document.body.bgColor = event.target.dataset['color'];
+        }
+        // 8
+        document.form1.btnRed3.onclick = m12;
+        document.form1.btnYellow3.onclick = m12;
+        document.form1.btnBlue3.onclick = m12;
+        function m12() {
+            document.body.bgColor = event.target.dataset['color'];
+        }
+        // 9
+        // 태그 name이 동일한 객체가 2개 이상이면 > 배열이 된다.
+        for (var i = 0; i < document.form1.btn.length; i++) {
+            document.form1.btn[i].onclick = m13;
+        }
+        function m13() {
+            document.body.bgColor = event.target.dataset['color'];
+        }
+
+        //
+        // alert(document.images['cat'].length);
+
+        for (var i = 0; i < document.images.length; i++) {
+            if (document.images[i].name == 'cat') {
+                document.images[i].onclick = m14;
+                // document.images[i].onmouseover = m14;
+            }
+        }
+
+        function m14() {
+            //어떤 태그 > event.target / event.srcElement
+            //어떤 이벤트 > event.type
+            if (event.target.width == 128) {
+                event.target.width = 300;
+            } else {    
+                event.target.width = 128;
+            }
+        }
+
+
+    </script>
+</body>
+</html>

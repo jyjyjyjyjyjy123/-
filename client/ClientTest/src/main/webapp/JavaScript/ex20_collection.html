@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이미지</h1>
+    <img src="/asset/images/catty01.png" name="img1">
+    <img src="/asset/images/catty02.png">
+    <img src="/asset/images/catty03.png">
+    <img src="/asset/images/catty04.png">
+    <img src="/asset/images/catty05.png">
+
+    <h1>링크</h1>
+    <a href="https://naver.com">네이버</a>
+    <a href="https://google.com" name="link2">구글</a>
+    <a href="https://daum.net">다음</a>
+
+    <h1>앵커</h1>
+    <a name="a1">앵커1</a>
+    <a name="a2">앵커2</a>
+
+    <h1>폼</h1>
+    <form>
+        <input type="text" name="txt1">
+        <input type="text">
+        <input type="text">
+    </form>
+    <form>
+        <input type="checkbox">
+        <input type="radio">
+    </form>
+
+    <script>
+        /*
+            내장 배열(=컬렉션)
+            - 문서 내용(HTML)을 기반으로 자동 생성되는 배열을 제공한다.
+            - 태그에 접근하기 위한 도구
+            
+            1. window.document.images
+            2. window.document.links
+            3. window.document.anchors
+            4. window.document.forms
+            5. window.document.forms[index].elements
+            6. window.document.all > 비표준(MS) > 문서상의 모든 태그
+             
+        */
+
+        console.log(window.document.images.length);
+        console.log(window.document.images[0].src);
+        for (let i = 0; i < 5; i++) {
+            console.log(window.document.images[i].src);
+        }
+
+        console.clear();
+
+        console.log(document.links.length);
+        for (let i = 0; i < 3; i++) {
+            console.log(document.links[i].href);
+        }
+
+        console.log(document.anchors.length);
+
+        console.log(document.forms.length);
+
+        // document.form1.txt1.value = '테스트';
+        document.forms[0].txt1.value = '테스트';
+
+        console.log(document.forms[0].elements.length);
+
+        console.log(document.all.length);
+
+        console.log(document.all[0]);
+        console.log(document.all[1]);
+        console.log(document.all[2]);
+
+        // document.images[0].width = 200;
+        // document.images.img1.width = 300;
+        // document.images['img1'].width = 50; //추천하는 방식
+
+        // document.links[1].target = '_blank';
+        // document.links.link2.target = '_blank';
+        // document.links['link2'].target = '_blank';
+
+        document.forms[0].txt1.value = '111';   //1
+        document.all.txt1.value = '222';        //3
+        document.all['txt1'].value = '333';     //2
+
+        </script>
+
+</body>
+</html>
