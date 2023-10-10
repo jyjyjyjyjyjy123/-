@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input { 
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM</h1>
+
+    <form name="form1">
+        <h2 id="title">Control</h2>
+        <div>
+            <input type="text" name="txt" id="txt1" class="txts">
+            <input type="text" name="txt" id="txt2" class="txts">
+            <input type="text" name="txt" id="txt3" class="txts">
+            <input type="button" value="버튼" name="btn1">
+        </div>
+    </form>
+    <!-- 
+        JavaScript
+        1. Core
+            - 언어 기본 기능
+        2. BOM
+            - 태그 조작 > 일부 태그만 조작
+            - 기능 부족
+            - 트리 구조 > 고정(정적) > 
+        3. DOM
+            - 모든 태그를 조작
+            - 기능 풍부
+            - 트리 구조 > 문서 내용 기반 
+            - BOM과 한몸 > document로부터 확장해서 구축
+
+        DOM, Document Object Model
+        - JavaScript DOM > HTML 조작
+        - 식별자 인식 > name, id, class
+        - BOM 기능 + 확장 기능
+        - CSS 조작(BOM 불가능)
+        - DOM Level 1 > DOM Level 2 > DOM Level 3
+
+        DOM에서 제공하는 태그 검색 도구(함수) > 1, 2, 5
+        1. id 검색          > document.getElementById('id')
+        2. class 검색       > document.getElementsByClassName('class')
+        3. name 검색        > document.getElementsByName('name')
+        4. 태그명 검색      > document.getElementsByTagName('tag')
+        5. CSS 선택자 검색
+            - ES6 추가(2014년) > 이전 > 다른 라이브러리에서 제공하던 기능
+            - document.querySelector('CSS selector') > 단수 반환
+            - document.querySelectorAll('CSS selector') > 복수 반환 
+        
+     -->
+
+     <script>
+        //1. id
+        //BOM
+        // document.form1.txt1.value = 'BOM';
+        //DOM
+        // document.getElementById('txt1').value = 'DOM';
+
+        //태그 검색 > BOM or DOm > 검색된 결과 객체(태그)는 동일한 객체다.
+        // alert(document.form1.txt1 === document.getElementById('txt1'));
+        
+        // h1같은건 BOM에서 지원 안했음 > 쓸모없음
+        // document.getElementById('title').align = 'center';
+
+        //2. class
+        //배열 반환
+        // var txts = document.getElementsByClassName('txts');
+        // alert(txts.length);
+        // for (var i = 0; i < txts.length; i++) {
+        //     txts[i].value = i;
+        // }
+
+        //3. name
+        // document.getElementsByName('txt')[0].value = 'DOM';
+
+        //4. 태그명
+        // var list = document.getElementsByTagName('input');
+        // for (var i=0; i<list.length; i++) {
+        //     // alert(list[i].id);
+        //     // list[i].value = i;
+        // }
+
+        //5. CSS 선택자
+        // document.querySelector('#txt1').value = 100;
+        // document.querySelector('h1').align = 'center';
+        // document.querySelector('input:nth-child(3)').value = 300;
+
+        // alert(document.querySelectorAll('.txts').length);
+
+    </script>
+</body>
+</html>

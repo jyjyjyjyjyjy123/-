@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 
+        타이머, Timer
+        
+        타이머 시작
+        1. id setTimeout(할일, 시간)
+            - 1회성 타이머
+
+        2. id setInterval(할일, 시간)
+            - 반복 타이머
+        
+        타이머 종료
+        1. void clearTimeput(id)
+        2. void clearInterval(id)
+     -->
+     <h1>타이머</h1>
+
+     <form name="form1">
+        <fieldset>
+            <legend>setTimeout</legend>
+            <input type="button" value="버튼" name="btn1">
+            <input type="text" name="txt1">
+        </fieldset>
+        <fieldset>
+            <legend>setInterval</legend>
+            <input type="button" value="버튼" name="btn2">
+            <input type="text" name="txt2">
+        </fieldset>
+        <fieldset>
+            <legend>조작</legend>
+            <input type="button" value="시작" name="btn3">
+            <input type="button" value="멈춤" name="btn4">
+            <input type="text" name="txt3">
+        </fieldset>
+     </form>
+
+     <hr>
+
+     <img src="/asset/images/catty01.png" name="cat1">
+
+     <script>
+        var btn1 = document.form1.btn1;
+        var btn2 = document.form1.btn2;
+        var btn3 = document.form1.btn3;
+        var btn4 = document.form1.btn4;
+
+        var txt1 = document.form1.txt1;
+        var txt2 = document.form1.txt2;
+        var txt3 = document.form1.txt3;
+
+        btn1.onclick = m1;
+        function m1() {//버튼 클릭 > 즉시호출
+            setTimeout(f1, 3000);
+        }
+        function f1() {//m1 호출 > 3초후 > f1 호출
+            // alert('따르릉');
+            txt1.value = (new Date()).toLocaleTimeString();
+        }
+
+        btn2.onclick = m2;
+        function m2() {
+            setInterval(f2, 1000);
+        }
+        function f2() {
+            txt2.value = (new Date()).toLocaleTimeString();
+        }
+
+        btn3.onclick = m3;
+        btn4.onclick = m4;
+
+        //1. 타이머를 단 1개만 실행하도록... > 중복 실행 금지 > 보편적
+        //2. 타이머를 여러개 실행할 수 있게.. > 중복 실행 가능
+        var n = 1;
+        var timer = 0;
+        var timerlist = [];
+        function m3() {
+            //1.
+            // if (timer == 0){
+            //     timer = setInterval(f3, 100);
+            //     console.log(timer);
+            // }
+            //2.
+            timerlist.push(setInterval(f3, 100));
+        }
+        function f3() {
+            txt3.value = n;
+            n++;
+        }
+        function m4() {
+            //1.
+            // clearInterval(timer);
+            // timer = 0;
+            //2.
+            //  순차 중지
+            // clearInterval(timerlist.pop());
+            //  일괄 중지
+            for (var i = 0; i < timerlist.length; i++) { 
+                clearInterval(timerlist[i]);
+            }
+        }
+
+
+
+        var cat1 = document.images['cat1'];
+        var m = 1;
+        var ctimer = 0;
+        cat1.onclick = m5;
+        function m5() {
+            if (ctimer == 0){
+                ctimer = setInterval(f5, 100);
+            } else {
+                clearInterval(ctimer);
+                ctimer = 0;
+            }
+        }
+        function f5() { 
+            if (m > 9) {
+                m = 1;
+            }
+            cat1.src = '/asset/images/catty0'+m+'.png';
+            m++;
+        }
+
+
+     </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin-top: 100px;
+            text-align: center;
+        }
+        input {
+            border-style: hidden;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            font-size: 200px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="count" value="10">
+    <script>
+        document.onkeydown = f2;
+        var timer = setInterval(f1, 1000)
+        function f1() {
+            count.value = count.value-1;
+            if (count.value == 0){
+                window.location.href = 'https://google.com';
+            }
+        }
+        function f2() {
+            if (event.keyCode == 27){
+                clearInterval(timer);
+                document.bgColor = 'tomato';
+            }
+            console.log(event.keyCode);
+
+        }
+    </script>
+</body>
+</html>

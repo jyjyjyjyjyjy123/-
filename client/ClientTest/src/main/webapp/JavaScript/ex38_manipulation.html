@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table {
+            border: 1px solid gray;
+            border-collapse: collapse;
+        }
+        .table td {
+            border: 1px solid gray;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>DOM 조작</h1>
+    <input type="button" value="버튼1" id="btn1">
+    <input type="button" value="버튼2" id="btn2">
+    <input type="button" value="버튼3" id="btn3">
+    <input type="button" value="버튼4" id="btn4">
+    <hr>
+    <div id="div1"></div>
+
+    <script>
+        document.getElementById('btn1').addEventListener('click',m1);
+        document.getElementById('btn2').addEventListener('click',m2);
+        document.getElementById('btn3').addEventListener('click',m3);
+        document.getElementById('btn4').addEventListener('click',m5);
+        
+        var div1 = document.getElementById('div1');
+
+        function m1() {
+            //동적으로 태그 생성하기
+            //1. innerHTML
+            //  - 쉽다
+            //  - 작성 비용 저렴
+            //  - 복잡한 작업 > 무리 > 모든걸 문자열로 조작
+            // div1.innerHTML = '<input type="text" size="10">';
+
+            //2. 정석
+            //  - 복잡하다.
+            //  - 작성 비용 고가
+            //  - 체계적인 작업
+
+            //2.1 태그 생성
+            var input = document.createElement('input'); //<input>
+
+            //2.2 속성 생성
+            // input.type = 'text'; //BOM
+            // input.size = '50';   //BOM
+            var type = document.createAttribute('type'); //type=""
+            type.value = 'text'; //type="text"
+            input.setAttributeNode(type); //<input type="text">
+
+            input.setAttribute('size','10'); //<input type="text" size="10">
+
+            div1.appendChild(input); //자식으로 추가
+
+            // <p align="center">문단입니다.</p>
+            // div1.innerHTML += '<p align="center">문단입니다.</p>';
+
+            var p = document.createElement('p');    //<p></p>
+            p.setAttribute('align', 'center');      //<p align='center'></p>
+            // var txt = document.createTextNode('문단입니다.');
+            // txt.nodeValue = '문단입니다.'
+            // p.appendChild(txt); //<p align='center'>문단입니다.</p>
+            p.textContent = '문단입니다.';
+            div1.appendChild(p);
+
+
+        }
+        function m2() {
+            //태그 삭제하기
+            // div1.innerHTML = '';
+            // alert(div1.innerHTML);
+            // div1.removeChild(div1.firstElementChild);
+            div1.removeChild(div1.lastElementChild);
+        }
+        function m3() {
+            // for (var i=1; i<= 5; i++) {
+            //     div1.innerHTML += '<img src="/asset/images/catty0'+i+'.png">';
+            // }
+            
+            // for (var i=0; i<div1.children.length; i++) {
+                //     div1.children[i].addEventListener('click', m4)
+                // }
+                
+                
+            for (var i=1; i<= 5; i++) {
+                var img = document.createElement('img');
+                img.setAttribute('src','/asset/images/catty0'+i+'.png');
+                img.addEventListener('click',m4);
+                div1.appendChild(img);
+            }
+        }
+        function m4() {
+            // alert(event.target.src);
+            div1.removeChild(event.target);
+        }
+        function m5() {
+            // 3 x 3 테이블 > td 이벤트
+            var table = document.createElement('table');
+            for (var i=0; i<3; i++) {
+                var tr = document.createElement('tr');
+                for (var j=0; j<3; j++) {
+                    var td = document.createElement('td');
+                    td.textContent ='item';
+                    td.addEventListener('click',m6);
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            table.className = 'table';
+            div1.appendChild(table);
+        }
+        function m6() {
+            event.target.bgColor ='gold';
+        }
+    </script>
+</body>
+</html>
