@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #tbl1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #tbl1 td {
+            border: 1px solid black;
+            padding:  10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>테이블</h1>
+    <table id="tbl1">
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+        <tr>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+            <td>item</td>
+        </tr>
+    </table>
+
+    <script>
+
+        //Hover Table
+        //<tr> 이벤트
+        const table = document.getElementById('tbl1');
+        const tr = table.firstElementChild.children; //table.tbody.tr들
+
+        for (let i = 0; i < tr.length; i++) {
+            //이벤트가 발생된 객체(태그)
+            // > 이벤트 발생에 관련된 계층 중 최하 하위(유턴 객체)
+            //- event.target
+            //- event.srcElement
+
+            tr[i].onmouseover = function() {
+                event.target.bgColor = 'gold';
+                // event.srcElement.bgColor = 'gold';
+                // alert(event.target.nodeName);
+                // event.target.parentElement.bgColor = 'gold';
+                event.currentTarget.bgColor = 'gold';
+                // tr[i].bgColor = 'gold';
+            }
+
+            tr[i].onmouseout = function() {
+                event.currentTarget.bgColor = 'transparent';
+            }
+        }
+        
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //Template String
+        //- ES6
+
+        let name = '홍길동'
+        let age = 20;
+
+        // console.log('이름은' +name+'이고, 나이는'+ age+'입니다.');
+        //JavaScript 문자열 표기법
+        //1. 'String'
+        //2. "String"
+        //3. `String` > template string
+
+        let a = '홍길동';
+        let b = "홍길동";
+        let c = `홍길동`;
+
+        console.log (a === b);
+        console.log (a === c);
+
+        console.log (`이름은 ${name}이고, 나이는 ${age-1}세입니다.`);
+
+        console.log (`현재 시간은 ${new Date()}입니다.`);
+
+        let temp = `
+        하나
+        둘
+        셋
+        `;
+        console.log(temp);
+
+        let temphtml = `
+            <tr>
+                <td>test</td>
+            </tr>
+            <tr>
+                <td>test</td>
+            </tr>
+        `;
+        console.log(temphtml);
+
+    </script>
+</body>
+</html>

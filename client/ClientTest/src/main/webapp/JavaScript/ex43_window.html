@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        //JavaScript > 객체에 프로퍼티를 자유롭게 추가할 수 있다.
+
+        const hong = {
+            name: '홍길동'
+        };
+        hong.age = 20;
+
+        const now = new Date();
+        console.log(now);
+
+        now.color = 'yellow';
+        console.log(now.color);
+        
+        now.check = function() {
+            console.log('check');
+        };
+        now.check();
+
+        //----------------------------------------
+
+        //window 객체
+        //- window.open()
+        //- window.close()
+
+        // window.alert();
+        // window.confirm();
+        // window.prompt();
+        // window.setTimeout();
+        // window.setInterval();
+
+
+        //JavaScript의 모든 함수는 자동으로 window 객체의 프로퍼티가 된다.
+        //JavaScript의 모든 변수는 자동으로 window 객체의 프로퍼티가 된다.
+        function m1() {
+            alert('m1');
+        }
+        // window.m1 = m1;
+        
+        var a1 = '홍길동'; //전역변수 > 변수(x), 프로퍼티(o)
+        console.log(window.a1);
+
+        var a1 = '아무개';
+
+        let a2 = '하하하';      //window 프로퍼티(x)
+        const a3 = '호호호';    //window 프로퍼티(x)
+
+        console.clear();
+
+        const obj = {
+            name: '객체',
+            age: 20
+        };
+
+        //제어문
+        // - 객체의 프로퍼티를 탐색하느 ㄴ루프
+        for (let p in window) {
+            console.log(p, obj[p]);
+        }
+
+        
+
+    </script>
+</body>
+</html>

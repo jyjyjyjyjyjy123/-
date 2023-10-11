@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="button" value="버튼1" id="btn1">
+    <input type="button" value="버튼2" id="btn2">
+
+    <script>
+        //클로저, Closure
+
+        //전역 함수
+        function outer() {
+            //지역 변수(outer)
+            let a = 10;
+            console.log('a', a);
+
+            //지역 함수(outer)
+            function inner() {
+                //지역 변수(inner)
+                let b = 20;
+                console.log('b', b);
+            }
+            inner();
+
+        }
+        outer();
+        // inner();
+
+
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+
+        let num1 = 100; //전역 변수
+
+        btn1.onclick = function() {
+            let num2 = 200; //지역 변수(btn1.onclick)
+            let num3 = 300;
+            temp = num3;
+
+            btn2.onclick = function() {
+                // alert();
+                // alert(num1); //전역 변수 호출
+                alert(num2);    //지역 변수 호출 > 이상함?? > num2의 생명주기?
+                // alert(num3);
+                alert(temp);
+                //외부 함수의 지역 변수를 내부 함수에서 사용할 때
+                //- 시간차에 따라 외부 지역 변수가 소멸 후 내부 함수의 호출 발생
+                //- 외부 함수의 지역 변수를 나중에 사용하기 위해서 별도의 공간에 저장 > Closure라고 함
+            };
+        };
+
+    </script>
+</body>
+</html>

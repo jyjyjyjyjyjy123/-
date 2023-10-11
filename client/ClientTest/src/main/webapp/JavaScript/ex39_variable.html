@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+        <img src="/asset/images/catty01.png">
+        <img src="/asset/images/catty02.png">
+        <img src="/asset/images/catty03.png">
+        <img src="/asset/images/catty04.png">
+        <img src="/asset/images/catty05.png">
+    </div>
+
+    <script>
+        /* 
+            JavaScript Core
+            
+            변수 선언하기
+            1. var
+                - BOM /DOM / ES6
+                - FUNCTION-SCOPED
+                - 제어문(영역 인식 불가능)
+                - 중복 선언 가능
+                - 상수 선언 불가능
+
+            2. let
+                - ES6(ECMAScript 2015)
+                - block-scoped(함수, 제어문)
+                - 중복 선언 불가능
+                - 변수
+                
+                3. const
+                - ES6(ECMAScript 2015)
+                - block-scoped(함수, 제어문)
+                - 중복 선언 불가능
+                - 상수(final 변수)
+
+
+        */
+
+        // var A = 10;
+        // var A = 20;
+        // console.log(a);
+
+        let a = 10; //전역 변수
+
+        function m1() {
+            let b = 20; //지역 변수(m1)
+        }
+
+        m1();
+        // console.log(b);
+
+        if (a > 0) {
+            let c = 30; //지역 변수(if)
+            var d = 40; //전역 변수
+        }
+        // console.log(d);
+        // console.log(c);
+
+        // let a = 50;
+
+
+        const PI = 3.14;
+        // PI = 5.28; 
+
+
+        // <div> == object
+        const list = document.getElementById('list');
+        const arr = [];
+
+        // list.setAttribute('title', '풍선 도움말');
+        // list.innerText = '홍길동';
+
+        // list = document.getElementById('txt1');
+
+        for (let i = 0; i < list.children.length; i++) {
+            list.children[i].onclick = m2;
+        }
+        function m2() {
+            event.target.width += 10;
+        }
+    </script>
+</body>
+</html>
