@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        const o1 = new Object();
+        const o2 = {};
+        
+        o1.name = '홍길동';
+        o1.hello = function () {
+            console.log('hello');
+        };
+        
+        o2.name = '아무개';
+        o2.hello = function() {
+            console.log('안녕');
+        };
+        
+        //생성자 함수 
+        //- 자바의 생성자와 유사
+        
+        
+        //생성자 함수
+        //- 함수명을 파스칼 표기법으로 작성한다. 
+        function User(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        
+        //*** 생성자 함수는 절대로 일반 함수처럼 그냥 호출하면 안된다.
+        // User('홍길동',20); > 잘못된 사용법
+        //*** 생성자 함수는 반드시 new 연산자와 같이 사용해야 한다.
+        //- new: 객체 생성 연산자 == new Object()
+        const  o3 = new User('홍길동',20);
+        
+        console.log(o3.name);
+        console.log(o3.age);
+        
+        const  o4 = new User('하하하',23);
+        
+        console.log(o4);
+        
+        // new > {}
+        const now = new Date();
+        const list = new Array();
+        
+        list[0] = 10; //0 > 방번호(X) > 프로퍼티
+        list[2] = 30; //2 > 방번호(X) > 프로퍼티
+        
+        console.log(list);
+
+        //var로 선언한 전역 변수 > window의 프로퍼티
+        // var color = 'gold';
+        
+        console.clear();
+
+        const arr = {
+            0: '사과',  //프로퍼티
+            1: '귤',
+            2: '바나나',
+            length: 3
+        };
+
+        console.log(arr[0]);    //유사 배열
+        console.log(arr[1]);
+        console.log(arr[3]);
+        console.log(arr.length);
+
+
+        const desk = {};
+        const today = new Date();
+        const list2 = new Array();
+        
+        console.log(typeof desk);   //object
+        console.log(typeof today);  //object
+        console.log(typeof list2);  //object
+        
+        //object > 구체적으로 확인 > 생성자 함수명
+        console.log(today.constructor.name);
+        console.log(list2.constructor.name);
+        console.log(desk.constructor.name);
+
+
+        const list3 = new Array();
+
+        list3[0] = '강아지';
+        list3[1] = '고양이';
+        list3.address = '서울시 강남구';
+        list3.check = function() {
+            alert('하하하');
+        };
+
+        const o5 = {
+            name: '홍길동',
+            age: 20,
+            info: function() {
+                // console.log(name, age) ;
+                console.log(this.name, this.age) ;
+                
+            }
+        };
+
+        o5.info();
+
+
+        const o6 = {
+            name: '호호호',
+            age: 27,
+            info: m1
+        };
+        function m1() {
+            console.log(this.name, this.age);
+        }
+
+        o6.info();
+
+        m1();
+        
+
+        //this > 상황에 따라
+
+
+
+
+    </script>
+</body>
+</html>

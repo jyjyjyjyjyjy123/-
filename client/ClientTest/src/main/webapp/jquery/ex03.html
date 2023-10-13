@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>jQuery Event</h1>
+    <input type="button" value="버튼1" id="btn1" class="btn">
+    <input type="button" value="버튼2" id="btn2" class="btn">
+    <input type="button" value="버튼3" id="btn3" class="btn">
+
+    <script src="/asset/js/jquery-1.12.4.js"></script>
+    <script>
+        //1. BOM
+        //- <input onclick="">
+        //- btn.onclick = function() {}
+
+        //2. DOM
+        //- btn.addEventListener('click', function() {});
+
+        //3. jQuery
+        //- 이벤트 함수
+
+        // jQuery('#btn1').css('color', 'blue');
+        // $('#btn2').css('color', 'orange');
+
+
+        /* 
+            jQuery 이벤트 함수
+            1. 전용 이벤트 함수
+                - 객체.이벤트함수
+            2. 범용 이벤트 함수
+                - 객체.on(이벤트명, 코백함수)
+        */
+
+        $('#btn1').click(function() {
+            alert();
+        });
+
+        $('#btn2').on('click', function() {
+            alert();
+        })
+
+        $('#btn3').click(function() {
+            //이벤트 주체?
+            // alert(event.target.id);
+            // alert(this.id);
+            $('#btn1').off('click');//이벤트제거
+            $('#btn2').off('click');//이벤트제거
+        });
+
+
+        // const list = document.querySelectorAll('.btn');
+
+        // for (let i = 0; i < list.length; i++) {
+            
+        //     list[i].onclick = function() {
+        //         alert(event.target.value);
+        //     }
+        // }
+
+        $('.btn').click(function() {
+            alert(event.target.value);
+        });
+
+    </script>
+</body>
+</html>

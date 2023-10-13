@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <h1>jQuery() 함수</h1>
+    <input type="button" value="확인" name="btn1" id="btn1">
+
+    <hr>
+
+    <div id="box1" class="box">상자1</div>
+    <div id="box2" class="box">상자2</div>
+    <div id="box3" class="box">상자3</div>
+    <div id="box4" class="box">상자4</div>
+    <div id="box5" class="box">상자5</div>
+
+    <script src="/asset/js/jquery-1.12.4.js"></script>
+    <script>
+        /* 
+            jQuery() 함수
+            - CSS 선택자 or 다른 표현을 사용해서 태그를 검색한다.
+            1. jQuery()로 찾은 결과는 항상 배열이다.
+            2. 반환값에 무언가를 적용하면.. 항상 자동으로 루프가 동작되어 각 요소마다 적용된다.
+            3. 자바스크립트 객체 > (객체) > jQuery 객체
+        */
+
+        const btn1 = document.getElementById('btn1');
+        
+        btn1.addEventListener('click', function() {
+            //jQuery + CSS 선택자
+            // jQuery('#btn1').css('color', 'blue');
+
+            //DOM
+            const list = document.getElementsByClassName('box');
+
+            for (let i = 0; i < list.length; i++) {
+                list[i].style.color = 'blue';
+            }
+
+            //forEach > new Array()에서 동작
+            // Array.from(list).forEach(box => box.style.color = 'yellow');
+
+            // jQuery('.box').css('color','green');
+            
+            //태그 선택자
+            // jQuery('div').css('color', 'orange');
+            
+            //id 선택자
+            // jQuery('#box1').css('color' ,'blue');
+            
+            //class 선택자
+            // jQuery('.box').css('color','green');
+
+            //그이외 선택자
+            // jQuery('h1, div:nth-child(even)').css('color', 'tomato');
+
+            const a = document.all.btn1; //BOM
+            const b = document.getElementById('btn1'); //DOM
+            const c = jQuery('#tbl1');
+
+            // alert(a===b);
+            // alert(a===c);
+
+
+            //BOM or DOM > 같은 자료형 반환
+            //jQuery > jQuery 객체 반환
+
+            // a.vlaue = 'ok';
+            // b.vlaue = 'ok';
+            // b.setAttribute('value', 'ok');
+            // c.vlaue = 'ok';
+            // c.val('ok');
+            // a.val('ok');
+
+            //BOM or DOM 객체 > (형변환) > jQuery 기능 사용
+            jQuery(a).val('ok');
+
+            //jQueary 객체도 형변환 후 BOM or DOM 객체
+            //jQuery 객체로부터 [index]를 사용해서 꺼내는 순간 순수 자바스크립트 객체가 변환된다.
+            c[0].value = 'ok';
+
+        });
+    </script>
+</body>
+</html>

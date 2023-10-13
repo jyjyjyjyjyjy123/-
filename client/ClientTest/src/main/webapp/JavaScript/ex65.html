@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="버튼1" id="btn1">
+    <input type="button" value="버튼2" id="btn2">
+
+    <script>
+        //화살표 함수,Arrow Function
+        //- 자바의 람다 > 익명 객체의 추상 메소드를 표현하는 기술
+        //- 자바스크립트 > 익명 함수를 표현하는 기술
+
+        //1. 함수 선언문 
+        function f1() {
+            console.log('f1');
+        }
+        f1();
+
+        //2. 함수 표현식(리터럴) == 익명 함수
+        const f2 = function () {
+            console.log('f2');
+        };
+        f2();
+
+        //즉시호출
+        (function () {        
+            console.log('f2_1');
+        })();
+
+        //3. 화살표 함수 == 익명 함수 
+        const f3 = () => {
+            console.log('f3');
+        }
+        f3();
+
+        //실행문 1줄 > 실행 블럭 생략
+        const f4 = () => console.log('f4');
+        f4();
+
+        //매개변수
+        const f5 = (num) => console.log(num);
+        const f6 = num => console.log(num);
+        const f7 = (a, b) => console.log(a, b);
+
+        //반환 값
+        const f8 = () => {return 100;};
+        const f9 = () => 100;
+
+
+        const obj = {
+            onclick: function() {
+                this.value;
+            }
+        };
+        obj.onclick = function() {};
+
+
+        document.getElementById('btn1').onclick = function() {
+            // alert('btn1');
+
+            //이벤트 발생 객체의 정보(btn1)
+
+            //상대 표현
+            // alert(event.target.value);
+            // alert(event.srcElement.value);
+            // alert(event.currentTarget.value);
+            // alert(this.value);
+
+            //절대 표현 
+            // alert (document.getElementById('btn1').value);
+        }
+        document.getElementById('btn2').onclick = () => {
+            // alert('btn2');
+
+
+            // alert(event.target.value);
+            // alert(event.srcElement.value);
+            // alert(event.currentTarget.value);
+
+            //*** 화살표 함수는 어떤 식으로 사용(호출)되든 그 안에서의 this 항상 window 객체를 가르킨다.
+            alert(this.value); //this > window 객체
+        }
+
+        setTimeout(function() {},1000);
+        setTimeout(() => {},1000);
+
+        console.clear();
+
+
+        const list = [1,2,3,4,5,6,7,8,9,10];
+        const flist = ['사과','포도','딸기','바나나','귤','앵두','자두','배','참외','수박','복숭아'];
+
+        //loop
+        for (let i = 0; i < list.length; i++) {
+            console.log(list[i]);
+        }
+
+        for (let p in list) {   //프로퍼티 탐색
+            console.log(p)
+        }
+
+        console.clear();
+        
+        //forEach == 향상된 for문
+        list.forEach(function (num) {
+            console.log(num);
+        });
+        
+        list.forEach(num => console.log(num));
+        
+        flist.forEach(f => console.log(f));
+        
+        console.clear();
+        
+        flist.forEach((f, index, list) => console.log(f, index, list));
+        
+        console.clear();
+
+        //map()
+        //- 요소를 다른 값으로 변환 > 새로운 배열 반환
+        //- 가공 + 변환
+
+        console.log(list.map(n => n % 2 == 0 ? '짝수' : '홀수'));
+        console.log(flist.map(item => item.length));
+
+        // flist.map(item => item.length).forEach(length => console.log(length));
+
+        //20세 + 서울시 > object[]
+        const names = ['홍길동','아무개','하하하'];
+
+        const olist1 = [];
+
+        for (let i=0; i < names.length; i++) {
+            const o1 = {
+                name: names[i],
+                age: 20,
+                address: '서울시'
+            };
+            olist1[i] = o1;
+        }
+
+        console.log(olist1);
+        
+        const olist2 = names.map(name => {
+            return {name: name, age: 20, address: '서울시'};
+        });
+        
+        console.log(olist2);
+
+        //filter() > 다중값 반환
+        console.log(list.filter(num => num % 2 == 0));
+
+        console.log(flist.filter(item => item.length >= 3));
+
+        //find()
+        //- 요소 검색
+        //- 단일값 반환
+        console.log(flist.find(item => item.length >= 3));
+
+
+    </script>
+</body>
+</html>
