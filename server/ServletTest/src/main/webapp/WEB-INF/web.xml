@@ -36,6 +36,7 @@
 		http://localhost:8090/servlet/ex01.do
 	-->
 	
+	<!-- hi -->
 	<servlet>
 		<servlet-name>hi</servlet-name>
 		<servlet-class>com.test.servlet.Hi</servlet-class>
@@ -44,6 +45,29 @@
 	<servlet-mapping>
 		<servlet-name>hi</servlet-name>
 		<url-pattern>/hi.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- ex02 -->
+	<servlet>
+		<servlet-name>send</servlet-name>
+		<servlet-class>com.test.servlet.Ex02_Send</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>send</servlet-name>
+		<url-pattern>/send.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>receive</servlet-name>
+		<servlet-class>com.test.servlet.Ex02_Receive</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>receive</servlet-name>
+		<url-pattern>/receive.do</url-pattern>
 	</servlet-mapping>
 	
 	

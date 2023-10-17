@@ -61,3 +61,31 @@ Servlet Class 작성규칙
 - 웹서버의 역할
 - 자바로 서블릿 or JSP를 구현할 수 있는 수많은 *.jar 파일 제공
 -  서버측에서 서블릿과 JSP를 동작하게 만드는 역할
+
+아파치 > 웹서버
+톰캣 > 응용프로그램 서버
+
+톰캣 == 	서블릿 커테이너
+		응용 프로그램 서버
+		(Wev Application Server)
+		(WAS)
+		
+		
+		
+데이터 입력 > (전송) > 데이터 수신
+1. 데이터 입력 + 전송 > 페이지
+2. 데이터 수신 프로그램 > 결과 페이지		
+
+com.test.servlet > "Ex02_Send.java"		: 입력 + 전송
+				 > "Ex02_Receive.java"	: 수신 + 처리
+				 
+				 
+http://localhost:8090/servlet/receive.do?name=hong&age=20
+?뒤에 부분 > QueryString == 파라미터들
+			
+			
+Servlet > JSP > Servlet + JSP	 
+		
+new > dynamic web project > JSPTest > next > next > "jsp", 체크 
+		
+		
