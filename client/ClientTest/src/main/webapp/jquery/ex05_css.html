@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one { color: blue; }
+        .two { background-color: gold; }
+    </style>
+</head>
+<body>
+    <!-- ex05_css.html -->
+    <h1>jQuery + CSS</h1>
+
+    <input type="button" value="버튼" id="btn1">
+    <hr>
+    <div id="box">상자</div>
+
+    <script src="../asset/js/jquery-1.12.4.js"></script>
+
+    <script>
+
+        //jQuery > CSS 조작
+        $('#btn1').click(function () {
+            
+            /* 
+                CSS 조작
+                1. css(속성)        > 읽기
+                2. css(속성, 값)    > 쓰기
+            */
+
+            //JavaScript > CSS 조작 > inline style sheet
+            // alert(document.getElementById('box').style.color);
+            // alert(getComputedStyle(document.getElementById('box')).getPropertyValue('color'));
+            
+            // alert($('#box').css('color'));
+
+            /* $('#box').css('color', 'blue')
+                     .css('background-color', 'gold')
+                     .css('font-size', '3rem'); */
+
+            /* $('#box').css({
+                color: 'blue',
+                backgroundColor: 'gold',
+                'font-size': '3rem'
+            }); */
+
+            //BOM
+            // box.className = 'one'
+
+            //DOM
+            // box.classList.add('one')
+            // box.classList.add('two')
+
+            //jQuery
+            // $('#box').addClass('one');
+            // $('#box').addClass('two');
+            // $('#box').removeClass('two');
+            // $('#box').toggleClass('two');
+
+            /* 
+                1. obj.css('attr')
+                
+                - 읽기
+                2. obj.css('attr', 'value')
+                
+                - 쓰기
+                3. obj.css('attr', 'value')
+                      .css('attr', 'value')
+                      .css('attr', 'value')
+                4. obj.css({
+                    attr : value,
+                    attr : value,
+                    attr : value
+                })
+                
+                - 클래스 관련
+                5. obj.addClass('class')
+                6. obj.removeClass('class')
+                7. obj.toggleClass('class')
+            */
+
+        });
+
+    </script>
+</body>
+</html>
