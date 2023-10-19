@@ -46,18 +46,22 @@
 		position: relative;
 		left: 0;
 		top: 0;
-		border: 1px solid gray;
 	}
-	#list > .itme > img {
+	#list > .item > img {
+		width: 180px;
+		height: 180px;
 		object-fit: cover;
+		border: 1px solid gray;
+		padding: 3px;
 	}
 	#list > .item > div:last-child {
 		position: absolute;
-		right: 45px;
-		top: -2px;
+		right: 10px;
+		top: 3px;
 		font-size: 1.5rem; 
 		text-shadow: 0px 0px 1px #fff;
 		display: none;
+		cursor: pointer;
 	}
 	#list > .item:hover > div:last-child {
 		display: block;
@@ -75,10 +79,11 @@
 		
 		<% for(File file : list) { %>
 			<div class="item">
-			<img src="pic/<%= file.getName() %>">
-			<div>&times;</div>
-		</div>
+				<img src="pic/<%= file.getName() %>">
+				<div title="delete" onclick="deleteImage('<%= file.getName() %>');">&times;</div>
+			</div>
 		<% } %>
+		
 	</div>
 	
 	<form method="POST" action="ex18_ok.jsp" enctype="multipart/form-data">
@@ -97,7 +102,12 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="http://pinnpublic.dothome.co.kr/cdn/example-min.js"></script>
 	<script>
-	
+		function deleteImage(filename) {
+			//alert(filename);
+			if (confirm('delete?')) {				
+				location.href = 'ex18_del.jsp?filename=' + filename;
+			}
+		}
 	</script>
 </body>
 </html>
