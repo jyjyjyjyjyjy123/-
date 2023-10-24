@@ -44,4 +44,6 @@
 		- com.test.memo.dao
 		
 		- com.test.memo.model		>MemoDTO.java
+	- JSTL
+		- WEB-INF > lib 			> jstl-1.2.jar 복사
 								

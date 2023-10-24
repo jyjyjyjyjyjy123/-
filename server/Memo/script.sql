@@ -19,6 +19,6 @@ select * from tblMemo order by  seq desc;
 -- 메모 수정
 update tblMemo set memo = '수정 내용', regdate = sysdate where seq = 1;
 -- 메모 삭제
-delete from tblMemo where seq = 1;
+delete from tblMemo where seq = 29;
 
 commit;
