@@ -26,7 +26,143 @@ public class Ex04Data extends HttpServlet {
 			m2(req, resp);
 		} else if (type.equals("3")) {
 			m3(req, resp);			
+		} else if (type.equals("4")) {
+			m4(req, resp);			
+		} else if (type.equals("5")) {
+			m5(req, resp);			
+		} else if (type.equals("6")) {
+			m6(req, resp);			
+}
+		
+	}
+
+	private void m6(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		/*
+			자바스크립트 배열
+			[
+				{
+					"seq": "5",
+					"name": "홍길동",
+					"pw": "1234",
+					"memo": "메모입니다",
+					"regdate": "2023-10-26 09:40:00"
+				}
+				,
+				{
+					"seq": "5",
+					"name": "홍길동",
+					"pw": "1234",
+					"memo": "메모입니다",
+					"regdate": "2023-10-26 09:40:00"
+				}
+			]
+		*/
+		AjaxDAO dao = new AjaxDAO();
+		ArrayList<MemoDTO> list = dao.listMemo();
+		
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("application/json");
+		
+		PrintWriter writer = resp.getWriter();
+		
+		String temp = "";
+		temp += "[";
+		for (MemoDTO dto : list) {
+			temp +="{";
+			temp += String.format("\"seq\": \"%s\",", dto.getSeq());
+			temp += String.format("\"name\": \"%s\",", dto.getName());
+			temp += String.format("\"pw\": \"%s\",", dto.getPw());
+			temp += String.format("\"memo\": \"%s\",", dto.getMemo().replace("\r\n", "\\r\\n"));
+			temp += String.format("\"regdate\": \"%s\"", dto.getRegdate());
+			temp +="}";
+			temp +=",";
 		}
+		temp = temp.substring(0, temp.length()-1);
+		temp += "]";
+		
+		writer.print(temp);
+		
+		writer.close();
+	}
+
+	private void m5(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		/*
+			
+			JSON, JavaScript Object Notation
+			- 객체 표기법
+			- 키와 값을 문자열("")로 표기
+			- 단, 숫자 값은 "" 생략 가능
+			- 쌍따옴표만 가능, 홑따옴표 불가능
+			- 메소드 멤버 추가 불가능
+			- 자바의 DTO와 동일한 역할
+			
+			{
+				"키": "값"
+			}
+			
+			2 > MemoDTO 반환 > JSON 형태 반환
+			
+			{
+				"seq": "5",
+				"name": "홍길동",
+				"pw": "1234",
+				"memo": "메모입니다",
+				"regdate": "2023-10-26 09:40:00"
+			}
+		*/
+		
+		AjaxDAO dao = new AjaxDAO();
+		MemoDTO dto = dao.get(33);
+		
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("application/json"); //MIME
+		
+		PrintWriter writer = resp.getWriter();
+		
+		writer.println("{");
+		writer.printf("\"seq\": \"%s\",", dto.getSeq());
+		writer.printf("\"name\": \"%s\",", dto.getName());
+		writer.printf("\"pw\": \"%s\",", dto.getPw());
+		writer.printf("\"memo\": \"%s\",", dto.getMemo());
+		writer.printf("\"regdate\": \"%s\"", dto.getRegdate());
+		writer.println("}");
+		
+		writer.close();
+		
+		
+	}
+
+	private void m4(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		//XML > 여러개의 메모 > MemoDTO X N개
+		
+		AjaxDAO dao = new AjaxDAO();
+		
+		ArrayList<MemoDTO> list = dao.listMemo();
+		
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/xml");
+		
+		PrintWriter writer = resp.getWriter();
+		
+		//XML > 최상위 태그 유일
+		
+		//list > XML형식의 문자열로 출력
+		
+		writer.print("<?xml version='1.0' encoding='UTF-8'?>");
+		writer.print("<list>");
+		for (MemoDTO dto : list) {
+			writer.print("<memo>");
+			writer.printf("<seq>%s</seq>", dto.getSeq());
+			writer.printf("<name>%s</name>",dto.getName());
+			writer.printf("<pw>%s</pw>",dto.getPw());
+			writer.printf("<memo>%s</memo>",dto.getMemo());
+			writer.printf("<regdate>%s</regdate>",dto.getRegdate());
+			writer.print("</memo>");			
+		}
+		writer.print("</list>");
+
+		writer.close();
+		
 		
 	}
 

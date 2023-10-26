@@ -74,16 +74,35 @@
 			$.ajax({
 				type:'GET',
 				url: '/ajax/ex04data.do',
-				data: 'type=3',
+				//data: 'type=3',
+				data: 'type=4',
 				dataType: 'xml',
 				success: function(result) {
+					//단일값
 					//alert($(result).find('name').text());
-					
+					/* 
 					$('#result2').append('<div>번호: ' + $(result).find('seq').text() + '</div>');
 					$('#result2').append('<div>이름: ' + $(result).find('name').text() + '</div>');
 					$('#result2').append('<div>암호: ' + $(result).find('pw').text() + '</div>');
 					$('#result2').append('<div>메모: ' + $(result).find('memo > memo').text() + '</div>');
 					$('#result2').append('<div>날짜: ' + $(result).find('regdate').text() + '</div>');
+					 */
+					 
+					//다중값
+					//alert($(result).text());
+					 
+					//forEach((item, index) => {}) 동일 == 향상된 for문
+					//인자리스트 순서 주의(forEach와 반대)
+					$(result).find('list > memo').each((index, item) => {
+						$('#result2').append('<div>번호: ' + $(item).find('seq').text() + '</div>');
+						$('#result2').append('<div>이름: ' + $(item).find('name').text() + '</div>');
+						$('#result2').append('<div>암호: ' + $(item).find('pw').text() + '</div>');
+						$('#result2').append('<div>메모: ' + $(item).find('memo > memo').text() + '</div>');
+						$('#result2').append('<div>날짜: ' + $(item).find('regdate').text() + '</div>');
+						$('#result2').append('<hr>');
+						 
+					 });					
+					
 				},
 				error: function(a, b, c) {
 					console.log(a, b, c);
@@ -91,8 +110,43 @@
 			});
 			
 		});
+		
 		$('#btn3').click(function() {
-			
+			$.ajax({
+				type: 'GET',
+				url: '/ajax/ex04data.do',
+				//data: 'type=5',
+				data: 'type=6',
+				dataType: 'json',
+				success: function(result) {
+					//단일값
+					//result > {"seq": "33","name": "가나다","pw": "1234","memo": "배고프다23","regdate": "2023-10-24 12:25:13"}
+					//alert(result.seq);
+					/*
+					$('#result3').append('<div>번호: '+result.seq+'</div>');
+					$('#result3').append('<div>이름: '+result.name+'</div>');
+					$('#result3').append('<div>암호: '+result.pw+'</div>');
+					$('#result3').append('<div>메모: '+result.memo+'</div>');
+					$('#result3').append('<div>날짜: '+result.regdate+'</div>');
+					*/
+					
+					//다중값
+					$(result).each((index, memo) => {
+						//alert(memo.seq);
+						$('#result3').append('<div>번호: '+memo.seq+'</div>');
+						$('#result3').append('<div>이름: '+memo.name+'</div>');
+						$('#result3').append('<div>암호: '+memo.pw+'</div>');
+						$('#result3').append('<div>메모: '+memo.memo+'</div>');
+						$('#result3').append('<div>날짜: '+memo.regdate+'</div>');
+						$('#result3').append('<hr>');
+						
+					});
+					
+				},
+				error: function(a,b,c) {
+					console.log(a,b,c);
+				}
+			});
 		});
 	
 	</script>
