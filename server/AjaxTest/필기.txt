@@ -58,4 +58,17 @@ Ajax, Asynchronous JavaScript and XML
 
 
 
+- AjaxTest > script.sql
+- com.test.ajax.controller	> Ex08.java
+- com.test.ajax.service		> List.java
+							> Add.java
+							> Edit.java
+							> del.java
+- com.test.controller.model > AddressDTO.java
+- views	> ex08.jsp
+
+- jackson library > lib에 복사
+
+
+
 		
