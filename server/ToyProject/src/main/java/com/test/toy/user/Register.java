@@ -32,7 +32,6 @@ public class Register extends HttpServlet {
 		//3. 피드백
 		
 		//req.getParameter() 동작 불가능 > MultipartRequest 대체 
-		System.out.println("123");
 		
 		try {
 			
@@ -43,7 +42,6 @@ public class Register extends HttpServlet {
 										"UTF-8",
 										new DefaultFileRenamePolicy());
 			
-			System.out.println(req.getRealPath("/asset/pic"));
 			
 			String id = multi.getParameter("id");
 			String pw = multi.getParameter("pw");
@@ -58,7 +56,12 @@ public class Register extends HttpServlet {
 			dto.setPw(pw);
 			dto.setName(name);
 			dto.setEmail(email);
-			dto.setPic(pic);
+			if (pic != null && !pic.equals("")) {
+				dto.setPic(pic);
+			} else {
+				dto.setPic("pic.png");
+			}
+
 			dto.setIntro(intro);
 			
 			UserDAO dao = new UserDAO();
