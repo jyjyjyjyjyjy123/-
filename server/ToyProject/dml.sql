@@ -11,8 +11,9 @@ commit;
 select * from tblUser where id = 'rkskek' and pw = '1234' and ing = 'y';
 
 SELECT * from vwboard;
+SELECT * from tblboard;
 
-update tblboard set regdate = regdate - 1 where seq <=3;
+update tblBoard set readcount = readcount + 1 where seq = 1;
 
 insert into tblBoard (seq, subject, content, regdate, readcount, id)
     values (seqBoard.nextVal, '게시판입니다.', '내용입니다.', default, default, 'rkskek');
