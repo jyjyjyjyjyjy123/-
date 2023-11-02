@@ -2,6 +2,7 @@ package com.test.toy.board;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +20,63 @@ public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		//a. list.do > 호출
+		//b. list.do?column=subject&word=검색어 > 검색 호출
+		
+		String column = req.getParameter("column");
+		String word = req.getParameter("word");
+		String search = "n"; //검색중 = "y"
+		
+		if (column == null || word == null && (column.equals("")) && (word.equals(""))) {
+			search = "n";
+		} else {
+			search = "y";
+		}
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("column", column);
+		map.put("word", word);
+		map.put("search", search);
+		
+		//페이징
+		//- list.do > 1페이지 간주
+		//- list.do?page=1
+		//- list.do?page=5
+		
+		int nowPage = 0;		//현재 페이지 번호
+		int totalCount = 0;		//총 게시물 수
+		int pageSize = 10;		//한페이지에서 출력할 게시물 수
+		int totalPage = 0;		//총 페이지 수
+		int begin = 0;			//페이지 시작 위치
+		int end = 0;			//페이지 끝 위치
+		
+		int n = 0;				//출력 페이지 번호
+		int loop = 0;			//루프 변수
+		int blockSize = 10;		
+		
+		String page = req.getParameter("page");
+		
+		if (page == null || page.equals("")) {
+			nowPage = 1;
+		} else {
+			nowPage = Integer.parseInt(page);
+		}
+
+		//- list.do?page=1 > where rnum betwwen 1 and 10
+		//- list.do?page=2 > where rnum betwwen 11 and 20
+		//- list.do?page=3 > where rnum betwwen 21 and 30
+		
+		begin = ((nowPage - 1) * pageSize + 1);
+		end = begin + pageSize - 1;
+		
+		map.put("begin", begin+"");
+		map.put("end", end+"");
+		
+		
+		
+		
+		
 		//1. DB작업 > select
 		//2. 반환 > JSP 호출하기
 		
@@ -29,7 +87,7 @@ public class List extends HttpServlet {
 		//1.
 		BoardDAO dao = new BoardDAO();
 		
-		ArrayList<BoardDTO> list = dao.list();
+		ArrayList<BoardDTO> list = dao.list(map);
 		
 		//1.5 데이터 가공
 		for (BoardDTO dto:list) {
@@ -54,6 +112,69 @@ public class List extends HttpServlet {
 		
 		//2.
 		req.setAttribute("list", list);
+		req.setAttribute("map", map);
+		
+		
+		//총 게시물 수
+		totalCount = dao.getTotalCount();
+		totalPage = (int)Math.ceil((double)totalCount/pageSize);
+		
+		req.setAttribute("totalCount", totalCount);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("nowPage", nowPage);
+		
+		//페이지 바
+		StringBuilder sb = new StringBuilder();
+		
+		/*
+		 * for (int i=1; i<=totalPage; i++) {
+			 * if (i == nowPage) {
+			 * 		sb.append(String.format(" <a href='#!' style='color:tomato;'>%d</a> ", i)); 
+			 * } else {
+			 * 		sb.append(String.format(" <a href='/toy/board/list.do?page=%d'>%d</a> ", i, i)); 
+			 * } 
+		 * }
+		 */
+		
+		//list.do?page=1
+		//[이전] 1 2 3 4 5 6 7 8 9 10 [다음]
+		//list.do?page=11
+		//[이전] 11 12 13 14 15 16 17 18 19 20 [다음]
+		
+		
+		loop = 1;	//루프 변수
+		//n = 1;		//출력 페이지 번호
+		n = ((nowPage - 1) / blockSize) * blockSize + 1;
+		
+		//이전 10페이지
+		if (n == 1) {
+			sb.append(String.format("<a href='#!'>[이전 %d페이지]</a>", blockSize));
+		} else {			
+			sb.append(String.format("<a href='/toy/board/list.do?page=%d'>[이전 %d페이지]</a>", n-1, blockSize));
+		}
+		
+		
+		while (!(loop > blockSize || n > totalPage)) {
+			if (n == nowPage) {
+				sb.append(String.format(" <a href='#!' style='color:tomato;'>%d</a> ", n)); 
+			} else {
+				sb.append(String.format(" <a href='/toy/board/list.do?page=%d'>%d</a> ", n, n));
+			} 
+			
+			loop++;
+			n++;
+		}
+		
+		//다음 10페이지
+		if (n > totalPage) {
+			sb.append(String.format("<a href='#!'>[다음 %d페이지]</a>", blockSize));
+		} else {			
+			sb.append(String.format("<a href='/toy/board/list.do?page=%d'>[다음 %d페이지]</a>", n, blockSize));
+		}
+		
+		
+		req.setAttribute("pagebar", sb.toString());
+		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/board/list.jsp");
 		dispatcher.forward(req, resp);

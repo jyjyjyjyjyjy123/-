@@ -31,13 +31,14 @@ create sequence seqBoard;
 
 create or replace view vwBoard
 as
-select seq, subject, id, readcount, 
+select seq, subject, id, readcount, content, 
     case
         when to_char(sysdate, 'yyyy-mm-dd') = to_char(regdate, 'yyyy-mm-dd') 
             then to_char(regdate, 'hh24:mi:ss')
         else 
             to_char(regdate, 'yyyy-mm-dd')
     end as regdate,
+    (select name from tblUser where id = tblBoard.id) as name,
     case
         when (sysdate - regdate) < 30/24/60 then 1 else 0
     end as isnew

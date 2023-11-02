@@ -17,3 +17,7 @@ update tblBoard set readcount = readcount + 1 where seq = 1;
 
 insert into tblBoard (seq, subject, content, regdate, readcount, id)
     values (seqBoard.nextVal, '게시판입니다.', '내용입니다.', default, default, 'rkskek');
+    
+select * from vwBoard where subject like '%잠만보%';
+
+select * from (select a.*, rownum as rnum from vwBoard a) where rnum between 1 and 10;

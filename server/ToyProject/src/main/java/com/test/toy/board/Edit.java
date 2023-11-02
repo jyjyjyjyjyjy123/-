@@ -23,6 +23,11 @@ public class Edit extends HttpServlet {
 		//2. db 작업 > select
 		//3. 결과 + jsp 호출하기
 		
+		if (Auth.check(req, resp)) {
+			return;
+		}
+		
+		
 		//1.
 		String seq = req.getParameter("seq");
 		

@@ -16,6 +16,12 @@ import com.test.toy.board.repository.BoardDAO;
 public class Del extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		if (Auth.check(req, resp)) {
+			return;
+		}
+		
 		//1
 		String seq = req.getParameter("seq");
 		//2
