@@ -21,3 +21,23 @@ insert into tblBoard (seq, subject, content, regdate, readcount, id)
 select * from vwBoard where subject like '%잠만보%';
 
 select * from (select a.*, rownum as rnum from vwBoard a) where rnum between 1 and 10;
+
+
+select * from tblComment;
+
+insert into tblComment (seq, content, regdate, id, bseq) values (seqComment.nextVal, '뭐먹지', default, 'rkskek', 292);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

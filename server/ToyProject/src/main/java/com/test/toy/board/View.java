@@ -30,13 +30,15 @@ public class View extends HttpServlet {
 		//2.
 		BoardDAO dao = new BoardDAO();
 		
-		BoardDTO dto = dao.get(seq);
 		
 		//2.4
 		if (session.getAttribute("read") != null && session.getAttribute("read").toString().equals("n")) {
 			dao.updateReadcount(seq);
 			session.setAttribute("read", "y");
 		}
+		BoardDTO dto = dao.get(seq);
+		
+		System.out.println(dto.toString());
 		
 		//2.5 데이터 조작
 		String content = dto.getContent();

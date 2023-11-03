@@ -41,6 +41,19 @@ select seq, subject, id, readcount, content,
     (select name from tblUser where id = tblBoard.id) as name,
     case
         when (sysdate - regdate) < 30/24/60 then 1 else 0
-    end as isnew
+    end as isnew,
+    (select count(*) from tblComment where bseq = tblBoard.seq) as ccnt
 from tblBoard order by seq desc;
 
+create table tblComment (
+    seq number not null,
+    content varchar2(1000) not null,
+    regdate date default sysdate not null,
+    id varchar2(50) not null,
+    bseq number not null,
+    constraint tblComment_pk primary key(seq),
+    constraint tblComment_fk_id foreign key(id) references tblUser(id),
+    constraint tblComment_fk_bseq foreign key(bseq) references tblBoard(seq)
+);
+
+create sequence seqComment;
