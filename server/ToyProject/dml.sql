@@ -30,6 +30,15 @@ insert into tblComment (seq, content, regdate, id, bseq) values (seqComment.next
 
 
 
+select * from tblMarker;
+
+insert into tblMarker (seq, lat, lng) values (seqMarker.nextval, 37.49934, 127.0333);
+
+select * from tblplace;
+
+insert into tblPlace (seq, lat, lng, name, category) values (seqPlace.nextVal, 37.49934, 127.0333, '개인', '쌍용');
+
+
 
 
 

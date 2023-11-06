@@ -57,3 +57,34 @@ create table tblComment (
 );
 
 create sequence seqComment;
+
+
+
+
+
+
+
+
+
+create table tblMarker (
+    seq number primary key,
+    lat number not null,
+    lng number not null
+);
+create sequence seqMarker;
+
+
+
+
+
+create table tblPlace (
+    seq number primary key,
+    lat number not null,
+    lng number not null,
+    name varchar2(100) not null,
+    category varchar2(100) default 'default' not null
+);
+create sequence seqPlace;
+
+
+
