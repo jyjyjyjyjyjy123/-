@@ -214,7 +214,9 @@ strong {
 }
 
 .custom-block-body {
-  padding: 30px;
+	width : 350px;
+	height : 200px;
+	padding: 30px;
 }
 
 .custom-block-image {
