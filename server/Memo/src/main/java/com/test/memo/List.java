@@ -36,7 +36,7 @@ public class List extends HttpServlet {
 		}
 		
 		//3.
-		req.setAttribute("list", list);
+		req.setAttribute("list", list);   
 		
 		//System.out.println(list);
 		

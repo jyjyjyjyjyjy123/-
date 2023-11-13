@@ -36,17 +36,16 @@ insert into tblMarker (seq, lat, lng) values (seqMarker.nextval, 37.49934, 127.0
 
 select * from tblplace;
 
-insert into tblPlace (seq, lat, lng, name, category) values (seqPlace.nextVal, 37.49934, 127.0333, '개인', '쌍용');
+insert into tblPlace (seq, lat, lng, name, category) values ((select max(SEQ) from tblplace)+1, 37.49934, 127.0333, '개인', '쌍용');
 
+select max(SEQ) from tblplace;
 
+insert into tbl (seq, lat, lng, name, category) values (seqPlace.nextVal, 37.49934, 127.0333, '개인', '쌍용');
 
+select t.dispenseseq,t.pharmacyid,t.pickupway,t.regdate,t.dispensestatus from tbldispense t;
 
+insert into tbldispense (dispenseseq, pharmacyid, pickupway, regdate, dispensestatus) values ((select max(dispenseseq) from tbldispense)+1, 'sla0623', ?, ?, '예약대기중');
 
+select max(tblregister.meditblregister.mediseq) from tblregister;
 
-
-
-
-
-
-
-
+insert into tblregister
