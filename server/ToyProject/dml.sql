@@ -38,14 +38,17 @@ select * from tblplace;
 
 insert into tblPlace (seq, lat, lng, name, category) values ((select max(SEQ) from tblplace)+1, 37.49934, 127.0333, '개인', '쌍용');
 
-select max(SEQ) from tblplace;
+select * from tbldispense;
+select * from tblregister;
+commit;
+
+delete tblregister where mediseq = 412;
 
 insert into tbl (seq, lat, lng, name, category) values (seqPlace.nextVal, 37.49934, 127.0333, '개인', '쌍용');
 
 select t.dispenseseq,t.pharmacyid,t.pickupway,t.regdate,t.dispensestatus from tbldispense t;
 
-insert into tbldispense (dispenseseq, pharmacyid, pickupway, regdate, dispensestatus) values ((select max(dispenseseq) from tbldispense)+1, 'sla0623', ?, ?, '예약대기중');
+insert into tbldispense (dispenseseq, pharmacyid, pickupway, regdate, dispensestatus) values ((select max(dispenseseq) from tbldispense)+1, 'sla0623', '방문수령', TO_DATE('2023-11-13 12:10:00', 'YYYY-MM-DD:HH24:MI:SS'), '예약대기중');
 
-select max(tblregister.meditblregister.mediseq) from tblregister;
+select max(tblregister.mediseq) from tblregister;
 
-insert into tblregister
