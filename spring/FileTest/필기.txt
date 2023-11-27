@@ -1,0 +1,13 @@
+
+1. Java + Spring 버전 변경
+
+2. 설정
+	- pom.xml
+	- web.xml
+	- servlet-context.xml
+	
+3. 추가 
+- com.test.file.controller > FileController.java
+- views	> add.jsp
+		> addok.jsp
+- webaapp > resources > files(폴더)

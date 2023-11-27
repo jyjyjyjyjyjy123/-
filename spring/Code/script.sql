@@ -8,3 +8,5 @@ create table tblCode (
 create sequence seqcode;
 
 select * from tblcode;
+
+select * from tblhospital;
