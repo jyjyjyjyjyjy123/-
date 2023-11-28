@@ -11,3 +11,13 @@
 - views	> add.jsp
 		> addok.jsp
 - webaapp > resources > files(폴더)
+
+	
+4. 추가(다중 파일 업로드)
+- FileTEST > script.sql
+- com.test.file.model 	> FileDAO.java(I)
+						> FileDAOImpl.java
+						> FileDTO.java
+- views > multi > list.jsp
+				> add.jsp
+				> view.jsp

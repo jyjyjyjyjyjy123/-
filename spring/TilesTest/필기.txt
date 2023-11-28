@@ -10,3 +10,8 @@ Spring Tiles
 
 4. com.test.controller	> TestController.java
    views	> test.jsp
+   
+5. 파일복사
+	- Controller 3개복사
+	- inc 볼더 복사
+	- views 폴더 복사
