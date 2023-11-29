@@ -27,27 +27,15 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="toy.exerd" partName="toy.exerd" path="C:/class/code/newProject/newProject/toy.exerd" title="toy.exerd" tooltip="newProject/toy.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/newProject/toy.exerd"/>
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="1조_아파어디가ERD.exerd" partName="1조_아파어디가ERD.exerd" title="1조_아파어디가ERD.exerd" tooltip="C:\Users\user\Downloads\1조_아파어디가ERD.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd"/>
 </editor>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="2조.exerd" partName="2조.exerd" path="C:/class/code/newProject/Project/2조.exerd" title="2조.exerd" tooltip="Project/2조.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Project/2조.exerd"/>
-</editor>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="아파2.exerd" partName="아파2.exerd" title="아파2.exerd" tooltip="C:\Users\user\Downloads\아파2.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/user/Downloads/아파2.exerd"/>
-</editor>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="아파어디가최종.exerd" partName="아파어디가최종.exerd" title="아파어디가최종.exerd" tooltip="C:\Users\user\Downloads\아파어디가최종.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/user/Downloads/아파어디가최종.exerd"/>
-</editor>
-<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="아파어디가최종 (1).exerd" partName="아파어디가최종 (1).exerd" title="아파어디가최종 (1).exerd" tooltip="C:\Users\user\Downloads\아파어디가최종 (1).exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/user/Downloads/아파어디가최종%20(1).exerd"/>
+<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="1조_아파어디가ERD.exerd" partName="1조_아파어디가ERD.exerd" title="1조_아파어디가ERD.exerd" tooltip="C:\Users\user\Downloads\1조_아파어디가ERD.exerd-20231128T071901Z-001\1조_아파어디가ERD.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd-20231128T071901Z-001/1조_아파어디가ERD.exerd"/>
 </editor>
 </editors>
 <views>
@@ -179,12 +167,16 @@
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/아파2.exerd"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/아파어디가최종.exerd"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/아파어디가최종%20(1).exerd"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd-20231128T071901Z-001/1조_아파어디가ERD.exerd"/>
 </editors>
 <item historyLabel="toy.exerd" index="0"/>
 <item historyLabel="2조.exerd" index="1"/>
 <item historyLabel="아파2.exerd" index="2"/>
 <item historyLabel="아파어디가최종.exerd" index="3"/>
-<item active="true" historyLabel="아파어디가최종 (1).exerd" index="4"/>
+<item historyLabel="아파어디가최종 (1).exerd" index="4"/>
+<item historyLabel="1조_아파어디가ERD.exerd" index="5"/>
+<item active="true" historyLabel="1조_아파어디가ERD.exerd" index="6"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -202,6 +194,12 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="1조_아파어디가ERD.exerd" tooltip="C:\Users\user\Downloads\1조_아파어디가ERD.exerd-20231128T071901Z-001\1조_아파어디가ERD.exerd">
+<persistable uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd-20231128T071901Z-001/1조_아파어디가ERD.exerd"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="1조_아파어디가ERD.exerd" tooltip="C:\Users\user\Downloads\1조_아파어디가ERD.exerd">
+<persistable uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd"/>
+</file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="아파어디가최종 (1).exerd" tooltip="C:\Users\user\Downloads\아파어디가최종 (1).exerd">
 <persistable uri="file:/C:/Users/user/Downloads/아파어디가최종%20(1).exerd"/>
 </file>

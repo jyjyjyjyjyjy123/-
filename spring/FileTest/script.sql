@@ -17,4 +17,6 @@ create sequence seqPic;
 select * from tblplace; 
 select * from tblpic;
 
+select a.*, (select count(*) from tblPic where pseq = a.seq) as piccount from tblplace a order by seq desc;
+
 commit;
