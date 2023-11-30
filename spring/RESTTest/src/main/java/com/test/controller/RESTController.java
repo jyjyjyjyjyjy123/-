@@ -1,8 +1,16 @@
 package com.test.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.domain.AddressDTO;
@@ -18,7 +26,7 @@ public class RESTController {
 	//Crud + REST
 	
 	//추가하기
-	//1. http://localhost/rest/address
+	//1. http://localhost:8090/rest/address
 	//2. POST
 	//3. return int
 	
@@ -28,5 +36,51 @@ public class RESTController {
 		
 		return dao.add(dto);
 		
+	}
+	
+	//목록보기
+	//1. http://localhost:8090/rest/address
+	//2. GET
+	//3. return List<AddressDTO>
+	@GetMapping(value = "/address")
+	public List<AddressDTO> list() {
+
+		return dao.list();
+	}
+	
+	//수정하기
+	//1. http://localhost:8090/rest/address/1
+	//2. PUT or PATCH
+	//3. return int
+	//경로 변수(PathVariable)
+	//@RequestMapping(value = "/address/{seq}", method = RequestMethod.PUT)
+	@PutMapping(value = "/address/{seq}")
+	public int edit(@RequestBody AddressDTO dto,@PathVariable("seq") String seq) {
+		
+		dto.setSeq(seq);
+		
+		return dao.edit(dto);
+	}
+	
+
+	//삭제하기
+	//1. http://localhost:8090/rest/address/1
+	//2. DELETE
+	//3. return int 
+	@DeleteMapping(value = "/address/{seq}")
+	public int del(@PathVariable("seq") String seq) {
+		
+		return dao.del(seq);
+		
+	}
+	
+	//검색하기(=상세보기)
+	//1. http://localhost:8090/rest/address/1
+	//2.
+	//3. return AddressDTO
+	@GetMapping(value = "/address/{seq}")
+	public AddressDTO get(@PathVariable("seq") String seq) {
+		
+		return dao.get(seq);
 	}
 }
