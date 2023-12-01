@@ -12,3 +12,8 @@ create table tblAddress(
 );
 
 select * from tblchild;
+select count(*) from tblAddress;
+select * from tbladdress;
+
+select * from tblselfsymtom;
+select * from tblselfsymtom
