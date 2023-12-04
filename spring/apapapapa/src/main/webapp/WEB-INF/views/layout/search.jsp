@@ -11,6 +11,17 @@
 <meta name="author" content="">
 <tiles:insertAttribute name="asset"/>
 <style>
+	.hide-tag{
+		display: none;
+	}
+	#tagList{
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+	}
+	.tag{
+		border: 1px solid #gray;
+		border-radius: 2px;
+	}
 </style>
 </head>
 <body id="section_1">
@@ -22,10 +33,9 @@
 	<tiles:insertAttribute name="footer"/>
 	<script>
 			var lists = [];
-			var seqlist = [1,0,0,0,0,0,0,0];
+			var seqlist = [0,0,0,0,0,0,0,0];
 			var count = 0;
 			var onoff = false;
-			/* load(seqlist); */
         	function selSystom(seq) {
         		var tag = document.getElementsByClassName("tag");
         		if (event.target.classList[1] === "clicked" || event.target.classList[2] === "clicked") {
@@ -58,7 +68,7 @@
         	function load(seqlist) {
         		$.ajax({
     				type: 'GET',
-    				url: '/apa/find/find.do',
+    				url: '/apa/search/tagfind.do',
     				data: {
     					seq1 : seqlist[0],
     					seq2 : seqlist[1],
@@ -188,13 +198,13 @@
     			});
 			}
         	
-        	$(".symtomlist-button").click(function() {
-    			if ($(".symtomlist-hide").is(":visible")){
-    				$(".symtomlist-hide").slideUp();
-    				$(".symtomlist-button").val("증상 더보기");    				
+        	$(".taglist-button").click(function() {
+    			if ($(".hide-tag").is(":visible")){
+    				$(".hide-tag").slideUp();
+    				$(".taglist-button").val("증상 더보기");    				
     			} else {
-    				$(".symtomlist-hide").slideDown();
-    				$(".symtomlist-button").val("증상 숨기기");    				
+    				$(".hide-tag").slideDown();
+    				$(".taglist-button").val("증상 숨기기");    				
     				$(".tag").css('display','inline');
     			}
     		});

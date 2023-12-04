@@ -34,7 +34,7 @@ public class ChatServer {
 	//클라이언트로부터 메시지 전달
 	@OnMessage
 	public void handleMessage(String msg, Session session) {
-		//System.out.println(msg);
+		System.out.println(msg);
 		
 		//JSON 형식의 문자열 -> 자바 클래스 객체로 변환
 		Gson gson = new Gson();
@@ -64,6 +64,30 @@ public class ChatServer {
 					s.getBasicRemote().sendText(msg);
 				} catch (Exception e) {
 					e.printStackTrace();
+				}
+			}
+		} else if (message.getCode().equals("3")) {
+			//대화 메시지
+			//- 보낸 사람 빼고 나머지 사람에게 전달
+			for (Session s : sessionList) {
+				if (s != session) {//보낸사람 빼고 나머지 사람
+					try {
+						s.getBasicRemote().sendText(msg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		} else if (message.getCode().equals("4")) {
+			//이모티콘
+			//- 보낸 사람 빼고 나머지 사람에게 전달
+			for (Session s : sessionList) {
+				if (s != session) {//보낸사람 빼고 나머지 사람
+					try {
+						s.getBasicRemote().sendText(msg);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}

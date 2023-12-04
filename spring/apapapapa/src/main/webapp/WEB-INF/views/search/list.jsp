@@ -2,20 +2,19 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <main>
-	<div id="main-list">
-		<div id="tags">
+	<div class="maindiv">
+		<div id="tagList">
 			<c:forEach items="${symtomlist}" var="dto">
 				<c:if test="${dto.selfsymtomseq+0 >= 25}">
-					<div id="tag${dto.selfsymtomseq}" class="tag symtomlist-hide"
-						" onclick="selSystom(${dto.selfsymtomseq})">${dto.selfsymtomname}</div>
+					<div id="tag${dto.selfsymtomseq}" class="tag hide-tag" onclick="selSystom(${dto.selfsymtomseq})">${dto.selfsymtomname}</div>
 				</c:if>
 				<c:if test="${dto.selfsymtomseq+0 <= 24}">
 					<div id="tag${dto.selfsymtomseq}" class="tag" onclick="selSystom(${dto.selfsymtomseq})">${dto.selfsymtomname}</div>
 				</c:if>
 			</c:forEach>
 		</div>
-		<div class="symtomlist-div">
-			<input type="button" class="symtomlist-button" value="증상 더보기">
+		<div>
+			<input type="button" class="taglist-button" value="증상 더보기">
 		</div>
 		<hr>
 		<%-- <table id="hospital-list">

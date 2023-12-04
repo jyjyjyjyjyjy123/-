@@ -17,4 +17,9 @@ public class MainController {
 		
 		return "main";
 	}
+	@GetMapping(value = "/main/mypage.do")
+	public String mypage() {
+		
+		return "main.mypage";
+	}
 }

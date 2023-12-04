@@ -65,7 +65,7 @@
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="/apa/search/list.do">병원 찾기</a></li>
-                                <li><a class="dropdown-item" href="#">약국 찾기</a></li>
+                                <li><a class="dropdown-item" href="/apa/search/list.do">약국 찾기</a></li>
                             </ul>
                         </li>
 
