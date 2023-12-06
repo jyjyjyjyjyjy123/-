@@ -1,4 +1,4 @@
-AWS
+-AWS
 - https://aws.amazon.com
 - 아마존 엡 서비스는 아마존닷컴의 클라우드 컴퓨팅 사업부이다.
     아마존 웹 서비스는 다른 웹사이트나 클라이언트측 응용 프로그램에 대해 온라인 서비스를 제공하고 있다.
@@ -9,5 +9,99 @@ IAM
 - 사용자 계정 생성 > 사용(모든 권한- 결제 권한)
 
 https://459269188629.signin.aws.amazon.com/console
+459269188629
+
 
 2중 인증 > MFA 설정
+1. 루트 사용자 MFA설정
+2. IAM 사용자 MFA설정
+
+엘라스틱서치
+- 리눅스 계열 구동 > CentOS vs Ubuntu
+- 윈도우즈, 맥OS 등...
+
+컴퓨터 > Ubuntu
+1. 듀얼부팅
+2. VMWare, VirtualBox 가상머신
+3. Docker 
+4. WSL, Windows Subsystem for Linux
+
+WSL 설치하기
+1. Windows 기능 켜기/끄기
+    - Linux용 Windows 하위 시스템
+    - 가상 머신 플랫폼
+
+2. Mirosoft Stor > Ubuntu 검색 > 22.04.3
+
+
+Java + Linux
+윈도우(맥): 개발
+리눅스: 운영/테스트
+
+3. 실행 > 오류 발생
+
+4. PowerSell 실행(+관리자 모드)
+    - 명령어 실행
+    - dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+    - dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+    - Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+5. wsl_update_x64.msi 설치하기
+    - https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+    - 설치후 PC재부팅 
+
+6. WSL > 2 버전 변경
+cmd에서
+    - $ wsl --set-default-version 2
+    - $ wsl --set-version Ubuntu-22.04 2
+    - $ wsl -l -v
+
+7. WSL 실행
+    - Ubuntu로 실행
+    - username: ubuntu
+
+    - password: java1234
+
+8. 패키지 업데이트 + 패키지 업그레이드
+    - 업데이트 > (리포지토리 최신 상태 갱신)
+    - 업그레이드 > 패키지(프로그램) > 실제 업그레이드
+    - $ apt-get update
+    - sudo(Super User Do) > 지금 명령에 한해서 최고 관리자 권한으로 실행
+
+
+9. 리눅스 명령어
+    1. pwd : 현재 위치 확인
+    2. ls, list : 디렉토리 확인
+        - ls        > 
+        - ls -a     > 숨긴까지 확인
+        - ls -l     > 상세정보
+    3. cd : 이동하는 명령어
+        - cd 자식폴더   > 자식 디렉토리로 이동
+        - cd ..         > 부모 디렉토리로 이동
+        - cd ~          > 홈 디렉토리로 이동
+        - cd /          > 제일 위 디렉토리로 이동
+    4. vi(vim) 편집기
+        - :q            > 나오기
+        - $ vi test.txt
+        a. 모드
+            1. 명령 모드
+                - i > 커서 위치에서 시작
+                - 검색
+                    - /검색어
+                    - esc
+                    - n(다음찾기),n(이전 찾기)
+                - o > 커서 다음줄 부터 첨삭
+            2. 입력 모드
+                - esc > 명령 모드 복귀
+            3. 콜론모드
+                - 저장 or 나가기
+                - :q > 종료
+                - :q! > 저장하지 않고 종료
+                - :w > 저장
+                - :wq > 저장 후 종료
+
+
+10.  JRE + JDK 설치하기
+    - $ java -version
+    - $ sudo apt-get install default-jre
+    - $ sudo apt-get install default-jdk
