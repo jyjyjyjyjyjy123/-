@@ -126,4 +126,90 @@ Document 추가하기
 - 데이터 입력하기
 
 $ curl -X PUT "<서버주소>:<포트번호>/<인덱스>/_doc/<도큐먼트ID>" -H "Content-Type: application/json" -d "데이터"
-$ curl -X PUT "localhost:9200>/member/_doc/1" -H "Content-Type: application/json" -d '{"name": "홍길동", "age": 20}'
+$ curl -X PUT "localhost:9200/member/_doc/1" -H "Content-Type: application/json" -d '{"name": "홍길동", "age": 20}'
+
+
+
+elasticsearch, kibana 실행 중인지 확인
+$ systemctl status elasticsearch > Active: active (running)
+$ systemctl status kibana > Active: active (running)
+
+$ sudo systemctl start 패키지명
+$ sudo systemctl stop 패키지명
+$ sudo systemctl status 패키지명
+$ sudo systemctl restart 패키지명
+
+브라우저 
+- http://localhost:9200 > elasticsearch
+- http://localhost:5601 > kibana
+
+
+
+
+elasticsearch
+- 구조: JSON을 저장하는 데이터베이스
+- 용도: 검색 엔진
+
+데이터 저장 단위 > Document == JSON 형태
+
+[오라클]
+1. 테이블 선언
+    - 컬럼 정의(이름(varchar2), 나이(number), 주소(varchar2))
+2. insert
+    - 레코드 추가
+
+[Elasticsearch]
+1. Index(Type) 선언
+    - 저장 규칙(x) > 강제성(x)
+2. 데이터 추가(JSON)
+{
+  "name": "홍길동",
+  "age": 20,
+  "address": "서울시"
+}
+{
+  "name": "아무개",
+  "age": 25,
+  "address": "인천시"
+}
+{
+  "nick": "호호호",
+  "gender": "f"
+}
+
+
+
+Elasticsearch 검색하기
+- 관계형 데이터베이스에 비해서 다양하고/효과적인 검색 기능을 제공한다.
+- 특징 > 풀 텍스트 검색(Full Text Search)을 지원한다.
+- 검색 > QueryDSL(Query Domain Sepacific Language)
+
+- 검색은 Index를 대상으로 수행된다.
+- GET <인덱스명>/_search > match_all 검색이 수행된다.
+
+검색 방식
+- URI 검색
+- JSON Data Body 검색 > 주로 사용
+
+JSON Data Body 검색
+- 데이터 본문 검색
+- 검색할 쿼리를 전송할 데이터 본문에 넣어서 입력하는 방식
+
+- 가장 많이 사용하는 쿼리 > match 쿼리
+GET <도큐먼트>/_search
+{
+    "query": {
+        "match": {
+            "<필드명>": "<검색어>"
+        }
+    }
+}
+
+
+
+
+멀티테넌시, Multitenancy
+- 여러개의 Index를 한번에 묶어서 검색할 수 있는 기능
+- 프로그램의 로그 파일 분석 > logs-2023-01, logs-2023-02, logs-2023-03 ...
+
+GET logs-2023-01,logs-2023-02,logs-2023-03/_search
