@@ -2,6 +2,7 @@ package com.project.apa.mapper;
 
 import java.util.List;
 
+import com.project.apa.api.search.model.BookMarkDTO;
 import com.project.apa.api.search.model.HospitalDoctorDTO;
 import com.project.apa.api.search.model.HospitalInfoDTO;
 import com.project.apa.api.search.model.ReviewDTO;
@@ -18,4 +19,10 @@ public interface InfoMapper {
 	List<ReviewDTO> reviewlist(String seq);
 
 	List<ReviewDTO> reviewtaglist(String seq);
+
+	List<BookMarkDTO> bookmarkcount(String seq);
+
+	int bookmarkin(BookMarkDTO dto);
+
+	int bookmarkout(BookMarkDTO dto);
 }

@@ -11,6 +11,27 @@
 <meta name="author" content="">
 <tiles:insertAttribute name="asset"/>
 <style>
+
+/* 위로 테스트 */
+	.reservation-modal {
+	  background: #fff;
+	  width: 100%;
+	  height: 100%;
+	  margin: 0;
+	  padding: 0;
+	  transition: all 600ms cubic-bezier(0.86, 0, 0.07, 1);
+	  top: 100%;
+	  position: fixed;
+	  left: 0;
+	  text-align: left;
+	}
+	.container.modal-open .reservation-modal {
+	  top: 50%;
+	  z-index: 999;
+	}
+	.js-close-modal {
+		opacity: 0;
+	}
 	.hide-tag{
 		display: none;
 	}
@@ -49,22 +70,65 @@
 		justify-content: space-between;
 	}
 	.reservation-button {
+		text-align:center;
+		font-size: 30px;
+		border-radius: 40px;
+		padding: 10px 25px;
+		display: inline-block;
+		transition: all .4s ease;
+		cursor: pointer;
 		border: 1px;
 		position: fixed;
-	    bottom: 10px;
-	    height: 4rem;
-	    width: 700px;
-	    border-radius: 8px;
-	   	font-weight: bold;
-	   	font-size: 25px;
-	   	box-shadow: 2px 2px 5px #000000;
-	   	margin: 0 auto;
-	   	left: 0;
-	   	right: 0;
-	   	z-index: 0;
+		bottom: 10px;
+		height: 4rem;
+		width: 700px;
+		font-weight: bold;
+		box-shadow: 2px 2px 5px #000000;
+		margin: 0 auto;
+		left: 0;
+		right: 0;
+		z-index: 888;
+	}
+	.reservation-modal-button-list {
+		text-align:center;
+		left: 0;
+		right: 0;
+		position: fixed;
+		bottom: 10px;
+	}
+	.reservation-modal-button {
+		text-align:center;
+		font-size: 30px;
+		border-radius: 40px;
+		padding: 10px 25px;
+		display: inline-block;
+		transition: all .4s ease;
+		cursor: pointer;
+		border: 1px;
+		height: 4rem;
+		width: 350px;
+		font-weight: bold;
+		box-shadow: 2px 2px 5px #000000;
+		background-color: #ffffff;
+	}
+	.review-progress-bar {
+	    width: 100%;
+	    height: 30px;
+	    background-color: #dedede;
+	    font-weight: 600;
+	    font-size: .8rem;
 	}
 	
+	.review-progress-bar .review-progress {
+	    width: 50%;
+	    height: 30px;
+	    padding: 0;
+	    text-align: center;
+	    background-color: #4F98FF;
+	    color: #111;
+	}
 </style>
+
 </head>
 <body id="section_1">
 
@@ -75,192 +139,13 @@
 	<tiles:insertAttribute name="footer"/>
 	
 	<script>
-			var lists = [];
-			var seqlist = [1,0,0,0,0,0,0,0];
-			var count = 0;
-			var onoff = false;
-        	function selSystom(seq) {
-        		var tag = document.getElementsByClassName("tag");
-        		if (event.target.classList[1] === "clicked" || event.target.classList[2] === "clicked") {
-        	          event.target.classList.remove("clicked");
-        	          count--;
-        	    } else {
-        	    	if (count >= 8) {
-	        	        	count = 0;
-	        	        	lists[count].classList.remove("clicked");
-        	    			lists[count] = event.target;
-        	    			seqlist[count] = seq;
-	        	        	lists[count].classList.add("clicked");
-	        	        	onoff = true;
-        	    	} else {
-        	    		if (onoff) {          	    			
-	        	        	lists[count].classList.remove("clicked");      	    			
-	        	        	lists[count] = event.target;
-        	    			seqlist[count] = seq;
-		        	    	lists[count].classList.add("clicked");
-        	    		} else {
-        	    			lists[count] = event.target;
-        	    			seqlist[count] = seq;
-		        	    	lists[count].classList.add("clicked");
-        	    		}
-        	    	}
-        	    }
-    	    	load(seqlist);
-        		count++;
-			}
-        	function load(seqlist) {
-        		let obj = {
-        				seq1 : seqlist[0],
-    					seq2 : seqlist[1],
-    					seq3 : seqlist[2],
-    					seq4 : seqlist[3],
-    					seq5 : seqlist[4],
-    					seq6 : seqlist[5],
-    					seq7 : seqlist[6],
-    					seq8 : seqlist[7]	
-        			};
-        		$.ajax({
-    				type: 'POST',
-    				url: 'http://localhost:8090/apa/search/tagfind',
-    				headers: {'Content-Type': 'application/json'},
-    				data: JSON.stringify(obj),
-    				dataType: 'json',
-    				success: function(result) {
-    					$('#hospital-list tbody').html('');
-    					$(result).each((index, item) => {
-    						let temp = `
-    								<tr>
-    									<td>
-		    								<a href="/apa/search/view.do?seq=\${item.hospitalid}" >
-		    								<div class="hospital-info-list">
-			    								<h6>\${item.hospitalname}</h6>
-			    				                <p>임시</p>
-			    				                <p>\${item.hospitaladdress}</p>
-						    				</a>
-			    				                <div >		
-				    								<a href="#">
-				    				                	<div class="hospital-info-grid">
-				    				                	`;
-				    				                	if (item.face == 'y' || item.face == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">대면</p>
-								    							`;
-				    				                	}
-				    				                	if (item.face == 'n' || item.face == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">대면</p>
-								    							`;
-				    				                	}
-				    				                	if (item.unface == 'y' || item.unface == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">비대면</p>
-								    							`;
-				    				                	}
-				    				                	if (item.unface == 'n' || item.unface == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">비대면</p>
-								    							`;
-				    				                	}
-				    				                	if (item.housecall == 'y' || item.housecall == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">왕진</p>
-								    							`;
-				    				                	}
-				    				                	if (item.housecall == 'n' || item.housecall == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">왕진</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishealthcheck == 'y' || item.ishealthcheck == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">건강검진</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishealthcheck == 'n' || item.ishealthcheck == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">건강검진</p>
-								    							`;
-				    				                	}
-				    				                	if (item.vaccination == 'y' || item.vaccination == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">예방접종</p>
-								    							`;
-				    				                	}
-				    				                	if (item.vaccination == 'n' || item.vaccination == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">예방접종</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishospitalnightcare == 'y' || item.ishospitalnightcare == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">야간진료</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishospitalnightcare == 'n' || item.ishospitalnightcare == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">야간진료</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishospitalholiday == 'y' || item.ishospitalholiday == 'Y'){
-				    				                		temp+=`
-								    							<p class="box-content box-content-color">휴일진료</p>
-								    							`;
-				    				                	}
-				    				                	if (item.ishospitalholiday == 'n' || item.ishospitalholiday == 'N'){
-				    				                		temp+=`
-								    							<p class="box-content">휴일진료</p>
-								    							`;
-				    				                	}
-						    							temp+=`
-						    							</div>
-						    						</a>
-						    						`;
-						    						if ('${lv}' == '1'){
-						    						temp += `
-						    							<a href="#">
-								    							<button class=""> 예약하기 </button>
-						    							</a>	
-						    							`;
-						    						} else if ('${lv}' == '' || '${lv}' == null){
-						    						temp += `
-						    							<a href="#">
-								    							<button class=""> 예약하기 </button>
-						    							</a>
-						    							`;
-						    						}
-						    							temp+= `
-			    				                </div>
-			    							</div>
-    									</td>
-    								</tr>
-    								`;
-						    	    $('#hospital-list tbody').append(temp);							
-    					});
-    				},
-    				error: function(a,b,c) {
-    					console.log(a,b,c);
-    				}
-    			});
-			}
-        	
-        	$(".taglist-button").click(function() {
-    			if ($(".hide-tag").is(":visible")){
-    				$(".hide-tag").slideUp();
-    				$(".taglist-button").val("증상 더보기");    				
-    			} else {
-    				$(".hide-tag").slideDown();
-    				$(".taglist-button").val("증상 숨기기");    				
-    				$(".tag").css('display','inline');
-    			}
-    		});
-        	
 			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 				mapOption = {
 					center: new kakao.maps.LatLng(37.49934, 127.0333), // 지도의 중심좌표
 					level: 3 // 지도의 확대 레벨
 				};
 		
-			// 지도를 생성합니다    
+			// 지도를 생성합니다    2
 			var map = new kakao.maps.Map(mapContainer, mapOption); 
 	
 			// 주소-좌표 변환 객체를 생성합니다

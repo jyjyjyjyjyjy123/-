@@ -10,8 +10,6 @@ public class AuthController {
 	@GetMapping(value = "/auth/accesserror.do")
 	public String accesserror(Model model) {
 
-		//권한이 없는 페이지를 접근하면 대신 보여줄 페이지
-		
 		return "auth/accesserror";
 	}
 	

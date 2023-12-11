@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.apa.api.search.model.BookMarkDTO;
 import com.project.apa.api.search.model.FindHospitalDTO;
 import com.project.apa.api.search.model.HospitalInfoDTO;
 import com.project.apa.api.search.service.SearchService;
@@ -25,5 +26,17 @@ public class RestSearchController {
 		List<String> findsystomlist = service.findsystomlist(dto);
 		
 		return service.findHospitalList(findsystomlist);
+	}
+	
+	@PostMapping(value = "/bookmark")
+	public int bookmark(@RequestBody BookMarkDTO dto) {	
+		
+		return service.bookmarkin(dto);
+	}
+	
+	@PostMapping(value = "/bookmarkout")
+	public int bookmarkout(@RequestBody BookMarkDTO dto) {
+		
+		return service.bookmarkout(dto);
 	}
 }
