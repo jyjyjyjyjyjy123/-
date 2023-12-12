@@ -1,9 +1,10 @@
+C:\class\code\elk\필기.txt
 
 Elasticsearch
 - https://elastic.co/kr
 
 Elasticsearch란?
-- 루씬 기반의 자바 오픈 소스 검색 엔진
+- 루씬 기반의 자바로 만들어진 오픈 소스 검색 엔진
 - 방대한 양의 데이터를 신속하고 거의 실시간으로 저장/검색/분석할 수 있다.
 - REST API를 제공한다.
 - JSON 형태로 데이터 저장/조회한다.
@@ -12,81 +13,75 @@ ELK or Elastic Stack
 - 엘라스틱 서치는 단독으로 사용 or ELK 스택으로 사용
 - E(Elasticsearch)
 - L(Logstash)
-- K(Kibana)
+- k(kibana)
 - B(Beats)
 
 1. Logstash/Beats
     - 역할 > Ingest
-    - 다양한 소스(DB,CSV,Log..)로부터 데이터를 가져다, 조작 후 Elasticsearch에게 전달하는 역할
+    - 다양한 소스(DB,CSV,Log..)로부터 데이터를 가져다 조작 후 Elasticsearch에게 전달하는 역할
 
 2. Elasticsearch
     - 역할 > Store, Search, Analyze
     - 직접 수집 데이터 or Logstash 수집 데이터 > 관리 or 조작(검색)
 
-3. Kibana
+3. kibana
     - 역할 > Visualize & Manage
-    - Elasticsearch의 데이터를 시각화 or 편리하게 조작 기능 제공한다.
+    - Elasticsearch의 데이터를 시각화 or 편리하게 조작 기능 제공한다
     - GUI 환경 제공
 
-
 ELK 설치
-    - ubuntu에서
-        - elasticsearch
-        $ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch |sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
-        $ echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-        $ sudo apt-get update
-        $ sudo apt-get install elasticsearch
-        $ systemctl status elasticsearch
-        $ sudo systemctl start elasticsearch
-        $ sudo systemctl enable elasticsearch
-        http://localhost:9200
-
-        - kibana
-        $ sudo apt-get install kibana
-        $ sudo systemctl status kibana
-        $ sudo systemctl start kibana
-        http://localhost:5601
-
-        - logstash
-        $ sudo apt-get install logstash
-        $ sudo systemctl status logstash
+    1. elasticsearch
+        - $ curl -fsSL https://artifacts.elastic.co/GPG-KEY-elasticsearch |sudo gpg --dearmor -o /usr/share/keyrings/elastic.gpg
+        - $ echo "deb [signed-by=/usr/share/keyrings/elastic.gpg] https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+        - $ sudo apt-get update
+        - $ sudo apt-get install elasticsearch
+        - $ systemctl status elasticsearch
+        - $ sudo systemctl start elasticsearch
+        - $ sudo systemctl enable elasticsearch
+        - 브라우저
+            > http://localhost:9200
+    2. kibana
+        - $ sudo apt-get install kibana
+        - $ sudo systemctl status kibana
+        - $ sudo systemctl start kibana
+        - 브라우저
+            >   
+    3. Logstash
+        - $ sudo apt-get install logstash
+        - $ sudo systemctl status logstash
 
 Elasticsearch 핵심 개념
 1. 클러스터
     - 노드의 집합
     - 하나 이상의 노드 집합
+
 2. 노드
     - 엘라스틱서치가 설치된 서버(컴퓨터)
+
 3. 인덱스
     - 비슷한 특성을 가진 문서의 집합
-    - 데이터 베이스 역할
+    - 데이터베이스 역할
+
 4. 타입
     - 도큐먼트 집합
     - 테이블 역할
+
 5. 도큐먼트
     - 데이터 저장단위
     - 레코드 역할(***)
     - JSON 포맷
-6. 샤드&리플리카
+
+6. 샤드 & 리플리카
     - 분산 환경을 위한 요소
 
-RDBMS    vs    elasticsearch
+RDBMS   vs  Elasticsearch
 
-Scheme          Mapping
-Database        index(***)
-Table           Type
-Row             Document(***)
-Column          Field
-SQL             QueryDSL
-
-
-elasticsearch REST API
-
-RDB     vs  Elasticsearch
-SELECT      GET
-update      PUT/POST
-INSERT      PUT/POST
-DELETE      DELETE
+Schema      Mapping
+Database    Index(***)
+Table       Type
+Row         Document(***)
+Column      Field
+SQL         QueryDSL
 
 SQL > select * from address where id = 1;
 ES > curl -X GET "localhost:9200/address/_doc/1"
@@ -96,38 +91,40 @@ REST API를 사용하기 위한 도구
 2. Postman, Insomnia 등 REST Client
 3. Kibana > Dev Tools
 
-
 Index(DB, 테이블), Document(데이터(행))
 
 Index CRUD
 - Index 조작
 
-Index 생선 전 > 이미 존재하는 지 확인 > 조회
-$ curl -X GET "localhost:9200/<인덱스명>"
-$ curl -X GET "localhost:9200/member"
-$ curl -X GET "localhost:9200/member?pretty"
+Index 생성 전 이미 존재하는 지 확인 > 조회한다
+
+- $ curl -X GET "localhost:9200/<인덱스명>"
+- $ curl -X GET "localhost:9200/member"
+- $ curl -X GET "localhost:9200/member?pretty"
 
 Index 생성하기
-$ curl -X PUT "localhost:9200/member?pretty"
+- $ curl -X PUT "localhost:9200/member?pretty"
 
 Index 삭제하기
-$ curl -X DELETE "localhost:9200/member?pretty"
+- $ curl -X DELETE "localhost:9200/member?pretty"
 
 
-
-Document CRUD 
+Document CRUD
 - Document 조작
 - Document == 레코드 1줄
 
-$ curl -X PUT "localhost:9200/member"
+-$ curl -X PUT "localhost:9200/member"
 
 Document 추가하기
 - PUT
 - 데이터 입력하기
+- Document를 저장할 Index가 존재하지 않아도 데이터를 넣으면 자동으로 Index를 생성해준다.
 
-$ curl -X PUT "<서버주소>:<포트번호>/<인덱스>/_doc/<도큐먼트ID>" -H "Content-Type: application/json" -d "데이터"
-$ curl -X PUT "localhost:9200/member/_doc/1" -H "Content-Type: application/json" -d '{"name": "홍길동", "age": 20}'
+- $ curl -X PUT "<서버주소>:<포트번호>/<인덱스>/_doc/<도큐먼트ID>" -H "Content-Type: application/json" -d "데이터"
 
+- $ curl -X PUT "localhost:9200/member/_doc/1" -H "Content-Type: application/json" -d '{"name": "홍길동", "age": 20}'
+
+- $ curl -X PUT "localhost:9200/member/_doc/2?pretty" -H "Content-Type: application/json" -d '{"name": "아무개", "age": 22}'
 
 
 elasticsearch, kibana 실행 중인지 확인
@@ -139,11 +136,9 @@ $ sudo systemctl stop 패키지명
 $ sudo systemctl status 패키지명
 $ sudo systemctl restart 패키지명
 
-브라우저 
-- http://localhost:9200 > elasticsearch
-- http://localhost:5601 > kibana
-
-
+브라우저
+http://localhost:9200 > elasticsearch
+http://localhost:5601 > kibana
 
 
 elasticsearch
@@ -153,50 +148,65 @@ elasticsearch
 데이터 저장 단위 > Document == JSON 형태
 
 [오라클]
-1. 테이블 선언
+1. 테이블 선언(Schema)
     - 컬럼 정의(이름(varchar2), 나이(number), 주소(varchar2))
 2. insert
     - 레코드 추가
 
 [Elasticsearch]
 1. Index(Type) 선언
-    - 저장 규칙(x) > 강제성(x)
+    - 저장 규칙(X) > 강제성(X)
+
 2. 데이터 추가(JSON)
 {
-  "name": "홍길동",
-  "age": 20,
-  "address": "서울시"
-}
-{
-  "name": "아무개",
-  "age": 25,
-  "address": "인천시"
-}
-{
-  "nick": "호호호",
-  "gender": "f"
+    "name": 홍길동,
+    "age": 20,
+    "address": "서울시"
 }
 
+{
+    "name": 아무개,
+    "age": 25,
+    "address": "인천시"
+}
 
+{
+    "nick": 호호호,
+    "gender": f
+}
+
+다량의 데이터
+{ "index" : { "_index" : "address", "_type" : "_doc", "_id" : "1" } }
+{"name" : "가가가", "age": 20, "gender": "m"}
+{ "index" : { "_index" : "address", "_type" : "_doc", "_id" : "2" } }
+{"name" : "나나나", "age": 20, "gender": "f"}
+{ "index" : { "_index" : "address", "_type" : "_doc", "_id" : "3" } }
+{"name" : "다다다", "age": 22, "gender": "m"}
+{ "index" : { "_index" : "address", "_type" : "_doc", "_id" : "4" } }
+{"name" : "라라라", "age": 24, "gender": "m"}
+
+
+Elasticsearch == 풀 텍스트 검색을 지원하는 검색 엔진입니다.
 
 Elasticsearch 검색하기
-- 관계형 데이터베이스에 비해서 다양하고/효과적인 검색 기능을 제공한다.
+- 관계형 데이터베이스에 비해서 다양하고 효과적인 검색 기능을 제공한다.
 - 특징 > 풀 텍스트 검색(Full Text Search)을 지원한다.
-- 검색 > QueryDSL(Query Domain Sepacific Language)
+- 검색 > QueryDSL(Query Domain Specific Language)
 
 - 검색은 Index를 대상으로 수행된다.
-- GET <인덱스명>/_search > match_all 검색이 수행된다.
+- GET <인덱스명>/_search -> match_all 검색이 수행된다.
 
 검색 방식
-- URI 검색
-- JSON Data Body 검색 > 주로 사용
+1. URI 검색
+2. JSON Data Body 검색 > 주로 사용
 
 JSON Data Body 검색
 - 데이터 본문 검색
 - 검색할 쿼리를 전송할 데이터 본문에 넣어서 입력하는 방식
 
 - 가장 많이 사용하는 쿼리 > match 쿼리
-GET <도큐먼트>/_search
+
+GET <도큐먼트 명>/_search
 {
     "query": {
         "match": {
@@ -205,11 +215,127 @@ GET <도큐먼트>/_search
     }
 }
 
-
-
+GET member/_search
+{
+    "query": {
+        "match": {
+            "gender": "f"
+        }
+    }
+}
 
 멀티테넌시, Multitenancy
 - 여러개의 Index를 한번에 묶어서 검색할 수 있는 기능
-- 프로그램의 로그 파일 분석 > logs-2023-01, logs-2023-02, logs-2023-03 ...
+- 프로그램의 로그 파일 분석 > logs-2023-01, logs-2023-02, logs-2023-03 ..
+- 시간 순으로 쌓이는 데이터에 적용하기 좋다.
 
-GET logs-2023-01,logs-2023-02,logs-2023-03/_search
+GET logs-2023-01, logs-2023-02, logs-2023-03/_search
+
+GET logs-*/_search
+
+GET _all/search # 모든 Index를 대상으로 검색(작업 부하 심함;;)
+
+
+데이터 색인(Index)
+- 엘라스틱은 데이터를 저장할 때 색인을 거쳐서 저장이 된다.
+- 색인 과정 > 엘라스틱 서치가 어떤 구조로 데이터를 저장 및 사용하는지
+
+역 인덱스, Inverted Index
+- *** 엘라스틱 서치에 대한 대답
+
+영어 형태소 분석기
+- snowball
+
+한글 형태소 분석기
+- ES 6.X 적용 > Nori 형태소 분석 채택
+
+Nori 설치하기
+- $ cd /usr/share/elasticsearch
+- $ sudo bin/elasticsearch-plugin install analysis-nori
+- $ cd ~
+- $ sudo systemctl restart elasticsearch
+
+
+매핑, Mapping
+- *** 한번 만들어진 매핑은 수정이 불가능하다.
+- 필드명은 중복될 수 없다.
+- 혹시라도 매핑 정보를 수정해야 한다? > 인덱스 삭제 > 인덱스 생성 권장
+
+
+PUT <인덱스명>
+{
+    "mapping": {
+        "<필드명>":{
+            "type":"<필드 타입>",
+            <추가설정>
+        }
+    }
+
+}
+
+엘라스틱 서치 자료형
+- 자바와 거의 유사함
+
+문자열
+- string > 폐기
+- text, keyword > 현재
+
+text
+- 문자열 자료형
+- 입력된 데이터를 텀 단위 쪼개서 역 색인 구조를 만들게 된다.
+- 풀텍스트 검색을 할 대상을 text 자료형으로 선언한다.(***)
+- 검색용
+- ex) "배고픈 강아지" > "배고픈", "강아지"
+
+keyword
+- 문자열 자료형
+- 입력된 데이터를 쪼개지 않고, 통째로 하나의 토큰으로 저장한다.
+- 그룹 짓기용 > 통계용
+- ex) "배고픈 강아지" > "배고픈 강아지"
+
+숫자
+- long
+- integer
+- short
+- byte
+- double
+- float(32bit)
+- half-float(16bit)
+
+날짜
+- Database
+- ISO8601 형식으로 표현
+    - "2023-12-12"
+    - "2023-12-12T09:47:46"
+    - "2023-12-12T09:47:46:46+09:00"
+- 어떤 형식으로 저장을 하던지 > 내부적으로는 무조건 epoch_millis 형식으로 저장한다.
+
+
+검색 > 정확도(Relevancy)
+- RDBMS > 검색을 할 때 조건에 맞는 데이터인지 아닌지 구분(이분법)을 해서 결과를 반환함
+        > 얼마나 조건에 정확하게 부합되는지는 판단 불가능
+- 엘라스틱 서치의 검색은 검색 결과가 입력된 조건과 얼마나 정확하게 일치하는지 계산해준다.
+
+스코어, Score
+- 검색된 결과가 얼마나 조건에 부합되는지를 나타내는 숫자
+- BM25 알고리즘(Best Matching)
+- 이 계산에는 TF, IDF, Field Length 3가지 요소가 사용된다.
+
+TF, term Frequency
+- 하나의 도큐먼트내에서 텀이 얼마나 많이 발견되는지?
+- ex) "자바" > 검색
+        - 결과 2개의 도큐먼트
+            - 1번 도큐먼트 > "자바" 단어가 5번
+            - 2번 도큐먼트 > "자바" 단어가 10번
+
+IDF, Inverse Document Frequency
+- 텀이 발견된 도큐먼트의 개수가 얼마나 많은지?
+- ex) "엘라스틱서치 설치" > 검색
+            - "엘라스틱" > 10개 도큐면트
+            - "설치" > 1000개 도큐먼트
+
+Field Length
+- 검색된 도큐먼트의 길이에 따라 정확도 반영
+- ex) "자바" > 검색
+            - 1번 도큐먼트 > message("자바 자료")
+            - 2번 도큐먼트 > message("안녕하세요. 저는 홍길동입니다. 저는 올해 대학을 졸업했구요. 비전공자입니다. 저는 영업을 하고 싶습니다. 취미로 자바 공부도 했어요)
