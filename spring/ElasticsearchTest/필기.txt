@@ -1,0 +1,140 @@
+
+
+
+
+Oracle
+- SQL Developer
+- Java Application(JDBC)
+
+Elasticsearch Client
+- Dev Tools
+- Spring Application
+
+
+프로젝트 설정
+
+1. pom.xml
+	- Java 버전
+	- 엘라스틱서치 의존성 추가
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+			<version>7.17.15</version>
+		</dependency>
+2. web.xml
+	- 인코딩 필터 추가
+		
+3. 패키지
+	- com.test.controller > TestController.java
+	- views > list.jsp
+			> add.jsp
+
+
+
+sudo systemctl stop elasticsearch
+sudo vi /etc/elasticsearch/elasticsearch.yml
+network.host: "0.0.0.0"
+cluster.initial_master_nodes: ["node-1"]
+
+
+AWS > Ubuntu > 스프링 + 엘라스틱서치 환경 구축
+
+1. 패키지 업데이트
+	$sudo apt-get update
+	
+2. JRE 설치
+	$java --version
+	$sudo apt-get install default-jre
+	
+3. JDK 설치
+	$java --version
+	$sudo apt-get install default-jdk
+
+4. Tomcat 설치
+	$ wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.83/bin/apache-tomcat-9.0.83.tar.gz
+	$ tar -xvf apache-tomcat-9.0.83.tar.gz
+	$ sudo mkdir -p /opt/tomcat
+	$ sudo mv apache-tomcat-9.0.83 /opt/tomcat
+	
+	$ sudo vim /etc/systemd/system/tomcat.service
+	
+	[Unit]
+	Description=Tomcat 9.0.83 servlet container
+	After=network.target
+	
+	[Service]
+	Type=forking
+	
+	User=root
+	Group=root
+	
+	Environment="JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64"
+	Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+	
+	Environment="CATALINA_BASE=/opt/tomcat/apache-tomcat-9.0.83"
+	Environment="CATALINA_HOME=/opt/tomcat/apache-tomcat-9.0.83"
+	Environment="CATALINA_PID=/opt/tomcat/apache-tomcat-9.0.83/temp/tomcat.pid"
+	Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+	
+	ExecStart=/opt/tomcat/apache-tomcat-9.0.83/bin/startup.sh
+	ExecStop=/opt/tomcat/apache-tomcat-9.0.83/bin/shutdown.sh
+	
+	[Install]
+	WantedBy=multi-user.target
+	
+	$ sudo systemctl daemon-reload
+	$ sudo systemctl start tomcat
+	$ sudo systemctl enable tomcat
+	
+	$ sudo ufw allow 8080/tcp
+
+5. AWS
+	EC2 > 설정
+	
+6. Swap 설정
+	- swap 메모리 > 하드디스크의 일부를 메모리처럼 사용하게 해준다.
+	$ cd /
+	$ sudo mkdir /swap
+	$ sudo dd if=/dev/zero of=/swap/swapfile bs=1024 count=2097152
+	$ cd /swap
+	$ sudo mkswap swapfile
+	$ sudo swapon swapfile
+	
+	$ swapon -s, free
+	
+	$ sudo vi /etc/fstab
+	
+	 맨 아래에 추가
+	/swap/swapfile swap swap defaults 0 0
+	
+7. Oracle 설치
+	https://www.oracle.com/database/technologies/xe-prior-release-downloads.html
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
