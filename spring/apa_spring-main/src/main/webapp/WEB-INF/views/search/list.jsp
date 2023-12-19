@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <style>
 
 </style>
@@ -40,6 +41,7 @@
 		<hr>
 		<div class="more-button-div">
 			<input type="button" class="taglist-button more-button" value="증상 더보기">
+			
 		</div>
 		
 		<hr>
@@ -148,37 +150,27 @@
  						let temp = `
  								<tr>
  									<td>
-   								<a href="/apa/search/view.do?seq=\${item.hospitalid}" >
+   								<a href="/apa/search/view.do?seq=\${item.hospitalid}&loginuserseq=${loginuserseq}">
    								<div class="hospital-info-list">
    								<div class="hospital-name-dept">
-    								<h6>\${item.hospitalname}</h6>
+    								<h4 style="color : #000000;">\${item.hospitalname}</h4>
     								<div class="hospital-info-grid">
     								`;
     								$(item.deptlist).each((index, item) => {
     									temp+=`<p class="box-content dept-box-content">\${item.departmentname}</p>`;
     								});
-    								/* $.ajax({
-							 			type: 'POST',
-							 			url: 'http://localhost:8090/apa/search/deptfind',
-							 			headers: {'Content-Type': 'application/json'},
-										beforeSend : function(xhr){
-											xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
-										},
-							 			data: JSON.stringify(obj2),
-							 			dataType: 'json',
-							 			success: function(result) {
-							 				var depttag = document.getElementsById("hospital-info-deptlist"+deptcount);
-							 				console.log(depttag);
-							 				$(result).each((index, item) => {
-							 					$(depttag).append(`<p>\${item.departmentname}</p>`);
-							 				});
-							 			},
-						 				error: function(a,b,c) {
-						 					console.log(a,b,c);
-						 				}
-						 			}); */
     				    	temp += `</div>
-    				    		</div>
+    				    		</div>`;
+    				    	if (item.opentime == "영업중") {
+    				    		temp += `<div class="hospital-name-dept">
+    				    			<div class="listopentimeinmark"></div>`;								
+							} else {
+								temp += `<div class="hospital-name-dept">
+									<div class="listopentimeoutmark"></div>`;															
+							}
+    				    	temp += `	
+								<p class="listopentime">\${item.opentime}</p>
+    				    	</div>	
     				    	<p>\${item.hospitaladdress}</p>
 			    				</a>
     				                <div >

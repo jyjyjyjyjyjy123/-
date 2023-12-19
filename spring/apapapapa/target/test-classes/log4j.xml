@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.test.apa">
+	<logger name="com.project.apa">
 		<level value="info" />
 	</logger>
 	

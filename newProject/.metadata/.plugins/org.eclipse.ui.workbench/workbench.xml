@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="14" version="2.0">
 <workbenchAdvisor/>
-<window height="1056" maximized="true" width="976" x="952" y="-8">
+<window height="1056" width="976" x="952" y="-8">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -174,6 +174,7 @@
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd-20231128T071901Z-001/1조_아파어디가ERD.exerd"/>
 <editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD%20(1).exerd"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/Users/user/Downloads/1조_아파어디가ERD.exerd-20231128T071901Z-001/1조_아파어디가ERD.exerd"/>
 </editors>
 <item historyLabel="toy.exerd" index="0"/>
 <item historyLabel="2조.exerd" index="1"/>
@@ -182,6 +183,8 @@
 <item historyLabel="아파어디가최종 (1).exerd" index="4"/>
 <item historyLabel="1조_아파어디가ERD.exerd" index="5"/>
 <item historyLabel="1조_아파어디가ERD.exerd" index="6"/>
+<item historyLabel="1조_아파어디가ERD (1).exerd" index="7"/>
+<item historyLabel="1조_아파어디가ERD.exerd" index="8"/>
 <item active="true" historyLabel="1조_아파어디가ERD (1).exerd" index="7"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
