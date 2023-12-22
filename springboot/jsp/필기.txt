@@ -1,0 +1,18 @@
+Spring Boot + JSP
+- 스프링 부트는 기본적으로 JSP를 지원하지 않는다.
+
+Spring Boot + 템플릿  엔진
+- Thymeleaf > 기본
+- Mustache
+- Freemarker
+- Velocity
+- 등..(JSP)
+
+JSP 관련 의존성 추가
+
+application.properties
+
+
+파일 추가
+- com.test.controller > TestController.java
+- src > main > webapp > WEB-INF > views > test.jsp

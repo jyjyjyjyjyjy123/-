@@ -1,0 +1,88 @@
+
+
+MyBatis 적용
+
+1. 의존성
+	- Spring Web
+	- Spring Boot DevTools
+	- Lombok
+	- Oracle Driver(ojdbc)
+	- MyBatis Framework
+	
+2. JSP
+	- pom.xml > 의존성 4개 추가
+	
+3. application.properties
+	- 서버 포트 번호
+	- JSP 설정
+	- Oracle(JDBC)
+	- MyBatis	
+	
+4. XML 매퍼
+	- src/main/resources > mapper > test.xml
+	
+5. 파일 추가
+	- com.test.mybatis1.controller > TestContrller.java
+	- com.test.mybatis1.persist	 > TestDAO.java
+	- com.test.mybatis1.domain 		> TestDTO.java
+	- src > main > webapp > WEB-INF > views > test.jsp
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

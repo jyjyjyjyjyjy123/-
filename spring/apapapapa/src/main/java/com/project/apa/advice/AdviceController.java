@@ -32,11 +32,16 @@ public class AdviceController {
      * @return advice.list 뷰 페이지
      */	
 	@GetMapping(value = "/advice/list.do")
-	public String list(String page, Model model) {
+	public String list(String page, Model model, String loginuserseq) {
 		 
 		// 진료과 목록을 가져오는 비즈니스 로직 수행
 		List<AdviceDTO> listDepartment = adviceservice.getDepartmentList();
 		
+		if (loginuserseq == null || loginuserseq.equals("")) {
+			loginuserseq = "0";
+		}
+		
+		model.addAttribute("loginuserseq",loginuserseq);
 		
 		 // 페이지 처리를 위한 변수 설정
 		int nowPage = 0; // 현재 페이지 번호

@@ -5,6 +5,17 @@
 <!-- treatment.jsp -->
 
 <style>
+button {
+	border: none;
+	border-radius: 5px;
+	color: #858796;
+	cursor: pointer;
+	background-color: #edf0f7;
+}
+
+button:hover {
+	background-color: #dddfeb;
+}
 
 .list tr {
 	height: 40px;
@@ -36,13 +47,6 @@
 
 .list tr td button:hover {
 	background-color: #CCC;
-}
-
-button {
-	border: none;
-	border-radius: 5px;
-	color: #858796;
-	cursor: pointer;
 }
 
 .null-msg {
@@ -193,7 +197,7 @@ button {
 				$('.today-date').append('[ ' + year + '년 ' + month + '월 ' + date + '일 ]');
 				
 				
-				if (result.length != 0) {
+				if (result.list.length != 0) {
 					
 					//예약이 있을 경우
 					
@@ -283,7 +287,7 @@ button {
 					
 					//예약이 없을 경우
 					
-					const nullMessage = `<h4 class="null-msg">오늘 신청된 예약이 없습니다.</h4>`;
+					const nullMessage = `<h4 class="null-msg">오늘 신청된 진료가 없습니다.</h4>`;
 					
 					$('.card-body').append(nullMessage);
 					

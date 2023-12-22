@@ -1,0 +1,16 @@
+Spring Boot + Thymeleaf
+
+JSP(X) > Thymeleaf(O)
+
+Thymeleaf(JSP + EL + JSTL)
+- 템플릿 엔진
+- 화면을 출력하는 담당(뷰 제작)
+- Thymeleaf, Freemarker, Mustache, Groovy 등..
+
+application.properties 설정
+- 기존 설정 재사용
+- 타임리프 설정 추가
+
+파일 추가
+- "com.test.thymeleaf.controller" > "TestController.java"
+- src/main/resources > templates(=views) > "m1.html"

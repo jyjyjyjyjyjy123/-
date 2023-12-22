@@ -5,6 +5,18 @@
 <!-- appointment.jsp -->
 
 <style>
+button {
+	border: none;
+	border-radius: 5px;
+	color: #858796;
+	cursor: pointer;
+	background-color: #edf0f7;
+}
+
+button:hover {
+	background-color: #dddfeb;
+}
+
 .list tr {
 	height: 40px;
 }
@@ -35,13 +47,6 @@
 
 .list tr td button:hover {
 	background-color: #CCC;
-}
-
-button {
-	border: none;
-	border-radius: 5px;
-	color: #858796;
-	cursor: pointer;
 }
 
 .null-msg {
@@ -200,7 +205,7 @@ button {
 				$('.today-date').append('[ ' + year + '년 ' + month + '월 ' + date + '일 ]');
 				
 				
-				if (result.length != 0) {
+				if (result.list.length != 0) {
 					
 					// thead
 					const theadData = `

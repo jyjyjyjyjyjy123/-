@@ -271,7 +271,7 @@
 		
 		$.ajax({
 			type: 'GET',
-			url: 'http://localhost:8090/apa/api/user/' + seq + '/mypage',
+			url: '/apa/api/user/' + seq + '/mypage',
 			beforeSend : function(xhr) {
                 xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
             },
@@ -441,7 +441,7 @@
 		
 		$.ajax({
 			type: 'PUT',
-			url: 'http://localhost:8090/apa/api/user/' + seq + '/mypage',
+			url: '/apa/api/user/' + seq + '/mypage',
 			headers: {'Content-Type': 'application/json'},
 			beforeSend : function(xhr) {
                 xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
@@ -467,26 +467,27 @@
 		
 	}
 	
+	
 	function del(seq) {
-		
-		$.ajax({
-			type: 'PATCH',
-			url: 'http://localhost:8090/apa/api/user/' + seq + '/mypage',
-			beforeSend : function(xhr) {
-                xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
-            },
-			dataType: 'json',
-			success: result => {
-				if (result == 1) {
-					location.href = '/apa/main.do';
-				} else {
-					alert('failed');
+		if(confirm('정말로 탈퇴하시겠습니까?')) {
+			$.ajax({
+				type: 'PATCH',
+				url: '/apa/api/user/' + seq + '/mypage',
+				beforeSend : function(xhr) {
+	                xhr.setRequestHeader('${_csrf.headerName}', '${_csrf.token}');
+	            },
+				dataType: 'json',
+				success: result => {
+					if (result == 1) {
+						location.href = '/apa/main.do';
+					} else {
+						alert('failed');
+					}
+				},
+				error: (a,b,c) => {
+					console.log(a,b,c);
 				}
-			},
-			error: (a,b,c) => {
-				console.log(a,b,c);
-			}
-		});
-		
+			});
+		}
 	}
 </script>

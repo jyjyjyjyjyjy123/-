@@ -71,7 +71,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="/apa/advice/list.do">의학 상담</a>
+                            <a class="nav-link click-scroll" href="/apa/advice/list.do?loginuserseq=${loginuserseq}">의학 상담</a>
                         </li>
 
                         <li class="nav-item dropdown">
@@ -80,10 +80,16 @@
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="#">의학 매거진</a></li>
                                 <li><a class="dropdown-item" href="#">질병백과</a></li>
-                                <li><a class="dropdown-item" href="/selftest/${seq}/list.do">셀프 테스트</a></li>
+                               	<li>
+								<sec:authorize access="hasRole('ROLE_USER')">
+                                	<a class="dropdown-item" href="/apa/selftest/<sec:authentication property="principal.dto1.userseq"/>/list.do">셀프 테스트</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+                                	<a class="dropdown-item" href="/apa/selftest/-1/list.do">셀프 테스트</a>
+								</sec:authorize>
+                               	</li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/apa/community/list.do">커뮤니티</a>
                         </li>
@@ -113,7 +119,7 @@
 					</sec:authorize>
 					<sec:authorize access="hasRole('ROLE_HOSPITAL')">
 						<li class="nav-item ms-3"><a
-							class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/counseling/list.do">마이페이지</a>
+							class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/counseling/${id}/list.do">마이페이지</a>
 						</li>
 						<li class="nav-item ms-3"><a
 							class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/${id}/medi/today/appointment">내

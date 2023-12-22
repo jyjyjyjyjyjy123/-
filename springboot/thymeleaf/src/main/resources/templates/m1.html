@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://me2.do/5BvBFJ57">
+</head>
+<body>
+	<h1>Thymeleaf</h1>
+	
+	<!--
+		Thymeleaf Expression
+		- EL/JSTL 유 사
+		
+		1. Variable Expressions, 변수 표현식
+		- ${}
+		
+		2. Selection Variable Expressions, 선택 변수 표현식
+		- *{}
+		
+		3. Message Expressions, 메시지 표현식
+		- #{}
+		
+		4. Link URL Expressions, 링크 주소 표현식
+		- @{}
+		
+		5. Fragment Expressions, 조각 페이지 표현식
+		- ~{}
+	-->
+	
+	<h2>변수 표현식</h2>
+	
+	<div>${num}</div>
+	<div th:text="${num}"></div>
+	<div th:text="${num}">기존 데이터</div>
+	
+	<div>제가 가지고 있는 숫자는 100입니다.</div>
+	<div th:text="'제가 가지고 있는 숫자는 '+${num}+'입니다.'"></div>
+	<div>제가 가지고 있는 숫자는 <span th:text="${num}"></span>입니다.</div>
+</body>
+</html>
