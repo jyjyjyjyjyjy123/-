@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -26,6 +26,12 @@
 		
 		5. Fragment Expressions, 조각 페이지 표현식
 		- ~{}
+		
+		th:tex"${}"
+		- 컨트롤러에서 전달받은 데이터를 접근한다.
+		- 해당 HTML 태그에 데이터를 PCDATA로 출력한다. (데이터 바인딩)
+		before) <div th:text="${num}"></div>
+		after) <div>100</div>	
 	-->
 	
 	<h2>변수 표현식</h2>
@@ -37,5 +43,12 @@
 	<div>제가 가지고 있는 숫자는 100입니다.</div>
 	<div th:text="'제가 가지고 있는 숫자는 '+${num}+'입니다.'"></div>
 	<div>제가 가지고 있는 숫자는 <span th:text="${num}"></span>입니다.</div>
+	
+	<div th:text="${txt}"></div>
+	<div >이름: <span th:text="${txt}"></span></div>
+	<div th:text="'이름: '+${txt}"></div>
+	
+	
+	
 </body>
 </html>

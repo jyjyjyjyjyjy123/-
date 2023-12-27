@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Thymeleaf <small>객체 출력</small></h1>
+	
+	<h2>Map</h2>
+	<div th:text="${map}"></div>
+	<ul>
+		<li th:text="${map.get('kor')}"></li>
+		<li th:text="${map.kor}"></li>
+		<li th:text="${map.eng}"></li>
+		<li th:text="${map.math}"></li>
+	</ul>
+	
+	<h2>DTO</h2>
+	<div th:text="${dto}"></div>
+	<ul>
+		<li th:text="${dto.getTitle()}"></li>
+		<li th:text="${dto.title}"></li>
+		<li th:text="${dto.author}"></li>
+		<li th:text="${dto.discount}"></li>
+	</ul>
+	
+	<hr>
+	
+	<!-- 선택 변수 표현식 -->
+	<h2>Map</h2>
+	<ul th:object="${map}">
+		<li th:text="*{kor}"></li>
+		<li th:text="*{eng}"></li>
+		<li th:text="*{math}"></li>
+	</ul>
+	
+	<h2>DTO</h2>
+	<ul th:object="${dto}">
+		<li th:text="*{title}"></li>
+		<li th:text="*{author}"></li>
+		<li th:text="*{discount}"></li>
+	</ul>
+</body>
+</html>

@@ -14,3 +14,10 @@ application.properties 설정
 파일 추가
 - "com.test.thymeleaf.controller" > "TestController.java"
 - src/main/resources > templates(=views) > "m1.html"
+
+
+- "com.test.thymeleaf.mapper" > "TestMapper.java"(I)
+- "com.test.thymeleaf.repository" > "TestDAO.java"(C)
+- "com.test.thymeleaf.domain" > "TestDTO.java"
+
+- src/main/resources > com > test > thymeleaf > mapper > TestMapper.xml

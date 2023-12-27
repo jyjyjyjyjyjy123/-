@@ -1,4 +1,4 @@
-package com.test.mybatis2;
+package com.test.thymeleaf;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
